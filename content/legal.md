@@ -12,7 +12,6 @@ seo:
   canonical: "" # custom canonical URL (optional)
   noindex: false # false (default) or true
 ---
-<br><br>
 - La información presentada en este sitio tiene fines informativos y educativos exclusivamente.
 
 - Si decides distribuir el contenido, se requiere la debida atribución y mención a __carlosmunoztorrijos.com__
