@@ -17,10 +17,12 @@
       "h1",
       "h2",
       "h3",
+      "h4",
       "h5",
       "head",
       "header",
       "html",
+      "img",
       "input",
       "kbd",
       "label",
@@ -226,14 +228,21 @@
     ],
     "ids": [
       "TableOfContents",
+      "almacenamiento-de-datos",
+      "análisis-y-rastreo",
       "buttonColorMode",
+      "cambios-en-la-política",
+      "compartir-datos",
+      "contacto",
       "doks-docs-nav",
       "further-reading",
+      "hola-mundo",
       "offcanvasNavMain",
       "offcanvasNavMainLabel",
       "offcanvasNavSection",
       "offcanvasNavSectionLabel",
       "query",
+      "recopilación-de-datos",
       "search-form",
       "searchModal",
       "searchModalLabel",
@@ -241,7 +250,8 @@
       "searchToggleDesktop",
       "searchToggleMobile",
       "socialMenu",
-      "toc"
+      "toc",
+      "uso-de-cookies"
     ]
   }
 }

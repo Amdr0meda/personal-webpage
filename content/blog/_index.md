@@ -1,5 +1,5 @@
 ---
-title: "Blog"
+title: "Publicaciones de mi Blog"
 description: ""
 summary: ""
 date: 2023-09-07T16:21:44+02:00
@@ -12,7 +12,7 @@ contributors: []
 pinned: false
 homepage: false
 seo:
-  title: "" # custom title (optional)
+  title: "Blog - Carlos Munoz" # custom title (optional)
   description: "" # custom description (recommended)
   canonical: "" # custom canonical URL (optional)
   noindex: false # false (default) or true

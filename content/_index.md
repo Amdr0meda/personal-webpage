@@ -1,12 +1,12 @@
 ---
-title: "Welcome to Doks"
+title: "Bienvenido a mi blog"
 description: ""
 lead: "Congrats on setting up a new Doks project!"
-date: 2023-09-07T16:33:54+02:00
-lastmod: 2023-09-07T16:33:54+02:00
+date: 2024-09-28
+lastmod: 2024-09-28
 draft: false
 seo:
-  title: "Welcome to Doks" # custom title (optional)
+  title: "Home - Carlos Munoz" # custom title (optional)
   description: "" # custom description (recommended)
   canonical: "" # custom canonical URL (optional)
   noindex: false # false (default) or true
