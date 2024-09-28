@@ -1,9 +1,9 @@
 ---
-title: "Publicaciones de mi Blog"
-description: ""
+title: "Publicaciones recientes"
+description: "Ultimas publicaciones del blog:"
 summary: ""
-date: 2023-09-07T16:21:44+02:00
-lastmod: 2023-09-07T16:21:44+02:00
+date: 2024-09-28
+lastmod: 2024-09-28
 draft: false
 weight: 50
 categories: []
@@ -12,8 +12,8 @@ contributors: []
 pinned: false
 homepage: false
 seo:
-  title: "Blog - Carlos Munoz" # custom title (optional)
-  description: "" # custom description (recommended)
+  title: "Publicaciones recientes - Carlos Munoz" # custom title (optional)
+  description: "Ultimas publicaciones del blog - Carlos Muñoz Torrijos" # custom description (recommended)
   canonical: "" # custom canonical URL (optional)
   noindex: false # false (default) or true
 ---
