@@ -1,5 +1,5 @@
 ---
-title: "Privacy Policy"
+title: "Política de Privacidad"
 description: ""
 summary: ""
 date: 2024-09-28
@@ -8,28 +8,33 @@ draft: false
 type: "legal"
 seo:
   title: "" # custom title (optional)
-  description: "" # custom description (recommended)
+  description: "Política de Privacidad" # custom description (recommended)
   canonical: "" # custom canonical URL (optional)
   noindex: false # false (default) or true
 ---
 
-#### RECOPILACIÓN DE DATOS
+###### RECOPILACIÓN DE DATOS
 - No recojo información personal identificable de mis visitantes. Abstengo el uso de cookies u otras tecnologías similares para rastrear tu actividad en línea.
 
-#### ALMACENAMIENTO DE DATOS
+###### ALMACENAMIENTO DE DATOS
 - Mi sitio web, alojado en GitHub Pages, y los servicios de CDN y WAF mediante Cloudflare, no almacenan información personal tuya. No obstante, es crucial tener presente que Cloudflare y GitHub pueden retener datos necesarios para proporcionar sus servicios, de acuerdo con sus respectivas políticas de privacidad.
 
-#### COMPARTIR DATOS
-- No comparto información personal con terceros.
+  - [Política de privacidad de GitHub](https://docs.github.com/en/site-policy/privacy-policies)
 
-#### USO DE COOKIES
+  - [Política de privacidad de Cloudflare](https://www.cloudflare.com/privacypolicy/)
+
+
+###### COMPARTIR DATOS
+- No comparto ninguna información personal con terceros.
+
+###### USO DE COOKIES
 - No empleo cookies ni tecnologías similares para realizar un seguimiento de tu comportamiento en línea.
 
-#### ANÁLISIS Y RASTREO
+###### ANÁLISIS Y RASTREO
 - No utilizo servicios de análisis ni rastreo de ningún tipo en mi sitio web. Tu visita es completamente anónima.
 
-#### CAMBIOS EN LA POLÍTICA
+###### CAMBIOS EN LA POLÍTICA
 - Me reservo el derecho de realizar modificaciones en mi política de privacidad. Cualquier alteración será comunicada en esta página.
 
-#### CONTACTO
-- Si posees alguna pregunta con respecto a mi política de privacidad, no dudes en contactarme a través de __contacto@carlosmunoztorrijos.com__.
+###### CONTACTO
+- Si posees alguna duda o pregunta, no dudes en contactarme a través de __contacto@carlosmunoztorrijos.com__
