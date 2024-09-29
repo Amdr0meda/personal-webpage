@@ -17,24 +17,23 @@ seo:
   canonical: "https://www.carlosmunoztorrijos.com/blog/contenedor-lxc-en-proxmox-con-qbittorrent--wireguard-mullvad/" # custom canonical URL (optional)
   noindex: false # false (default) or true
 ---
-<br>
-
+<br><br>
 ## 1º Crear un contendedor
 
 Se  usará un template de ubuntu 23.04,  __ubuntu-23.04-standard_23.04-1_amd64.tar.zst__. Para descargar el template se debe realizar desde la pestaña "CT Templates" de tu unidad, en mi caso nas-amdr0meda-ns. Seleccionando el botón **Templates** y proceder a descargar.
 <br><br>
 ![1º Crear un contendedor](./1.png)
-<br><br>
+<br><br><br><br>
 Posteriormente creamos un contenedor LXC usando el template anterior, en mi caso con 2 nucleos, 4Gb de ram y 512Mb swap. Desmarcando que sea un contenedor sin privilegios para tener acceso completo de escritura, (si posteriormente queremos compartir via SAMBA los ficheros).
 
 ![2º Crear un contendedor](./2.png)
-
-- Nota: En el ejemplo se asgina una IP fija (192.168.1.212). __Es recomendable asignar una IP fija al contenedor__.
+<br><br>
+> Nota: En el ejemplo se asgina una IP fija (192.168.1.212). __Es recomendable asignar una IP fija al contenedor__.
 
 <br><br>
 ## 2º Configuración inicial del contenedor
 
-Ahora ya podemos iniciar el contenedor y conectarnos por consola. Nos autenticamos con el usuario --root-- y la clave que hemos asignado anteriormente. 
+Procedemos a iniciar el contenedor y conectarnos por consola. Nos autenticamos con el usuario --root-- y la clave que hemos asignado anteriormente. 
 
 Antes de seguir con los proximos pasos debemos de actualizar todos los paquetes con el siguiente comando:
 ```
@@ -49,7 +48,7 @@ apt install wireguard wireguard-tools curl qbittorrent-nox cifs-utils iftop
 
 Ahora que ya tenemos instalado cifs-utils podemos o bien montar un recurso compartido donde se guardarán las descargas, como puede ser un NAS u omitir este paso y usar el almacenamiento de la maquina.
 
-Si queremos configurar el almacenamiento compartido se hace como cualquier otro en el siguiente archivo (Necesario reiniciar el contenedor al finalizar):
+> Si queremos configurar el almacenamiento compartido se hace como cualquier otro en el siguiente archivo (Necesario reiniciar el contenedor al finalizar):
 ```
 nano /etc/fstab
 ```
@@ -140,4 +139,4 @@ De esta manera finalizamos la configuración basica. A partir de ahora todos los
 <br><br>
 Y eso es todo, ¡ahora puedes descargar tus torrents desde un pequeño contenedor, solo necesitas acceder via web a la interfaz y escribir tus magnets o adjuntar los .torrents y qBittorrent se encargará de descargarlos por la vpn!
 <br><br><br><br>
-*Saludos, amdr0meda*
+>*Saludos, amdr0meda*
