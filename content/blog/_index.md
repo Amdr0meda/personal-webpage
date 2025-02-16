@@ -1,7 +1,7 @@
 ---
-title: "Publicaciones recientes"
+title: "Ultimas publicaciones del blog"
 description: "Ultimas publicaciones del blog:"
-summary: ""
+summary: "(Organizadas por orden cronologico)"
 date: 2024-09-28
 lastmod: 2024-09-28
 draft: false

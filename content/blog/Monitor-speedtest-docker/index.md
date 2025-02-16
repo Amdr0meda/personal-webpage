@@ -1,7 +1,7 @@
 ---
 title: "Montaje de Speedtest Tracker en Proxmox + Telegram y configuración"
-description: "Con Speedtest Tracker, es posible monitorear la velocidad de tu conexión a Internet de manera sencilla. Esta herramienta permite realizar pruebas de velocidad automáticamente y recopilar datos sobre el rendimiento. En este artículo, veremos cómo instalar y configurar Speedtest Tracker en un contenedor LXC de Proxmox, detallando el proceso paso a paso para facilitar la configuraimplementación."
-summary: "Con Speedtest Tracker, es posible monitorear la velocidad de tu conexión a Internet de manera sencilla. Esta herramienta permite realizar pruebas de velocidad automáticamente y recopilar datos sobre el rendimiento. En este artículo, veremos cómo instalar y configurar Speedtest Tracker en un contenedor LXC de Proxmox, detallando el proceso paso a paso para facilitar la configuraimplementación."
+description: "Con Speedtest Tracker, es posible monitorear la velocidad de tu conexión a Internet de manera sencilla. Esta herramienta permite realizar pruebas de velocidad automáticamente y recopilar datos sobre el rendimiento."
+summary: "Con Speedtest Tracker, es posible monitorear la velocidad de tu conexión a Internet de manera sencilla. Esta herramienta permite realizar pruebas de velocidad automáticamente y recopilar datos sobre el rendimiento. "
 date: 2024-09-20
 lastmod: 2024-09-20
 draft: false
@@ -19,6 +19,7 @@ seo:
 ---
 ---
 ## 1º Notas y consideraciones
+En este artículo, veremos cómo instalar y configurar Speedtest Tracker en un contenedor LXC de Proxmox, detallando el proceso paso a paso para facilitar la configuraimplementación.
 ## 2º Instalación del contenedor
 ## 3º Configuraciones iniciales
 ## 4º Parametrización de Speedtest Tracker
