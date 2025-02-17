@@ -2,23 +2,23 @@
 <section class="section container-fluid mt-n3 pb-3">
   <div class="row justify-content-center">
     <div class="col-lg-12 text-center">
-      <h1>¡Hola! Bienvenido a mi rincón digital</h1>
+      <h1>¡Hola! Bienvenido</h1>
     </div>
     <div class="col-lg-9 col-xl-8 text-center">
-      <p class="lead">Aquí tienes las dos últimas publicaciones que he compartido.</p>
+      <p class="lead">Soy un administrador de sistemas y en mis ratos libres comparto soluciones, trucos, posts y algún proyecto. Aquí tienes las dos últimas publicaciones de mi blog.</p>
     </div>
   </div>
-
   <div class="row justify-content-center mt-4">
-    {{ range first 2 .Site.RegularPages }}
-    <div class="col-md-6">
+    {{ range first 3 .Site.RegularPages }}
+    <div class="col-md-4">
       <div class="card shadow-sm mb-4">
         <div class="card-body">
           <h5 class="card-title">
             <a href="{{ .RelPermalink }}">{{ .Title }}</a>
           </h5>
           <br>
-          <p class="card-text">{{ .Summary }}</p>
+          <p class="card-text">{{ .Summary | truncate 110 }}</p> 
+
           <a href="{{ .RelPermalink }}" class="btn btn-primary">Leer más</a>
         </div>
       </div>
