@@ -1,5 +1,5 @@
 ---
-title: "Bienvenido a mi blog"
+title: "¡Hola! Bienvenido"
 description: ""
 lead: ""
 date: 2024-09-28
@@ -8,7 +8,7 @@ draft: false
 seo:
   title: "Inicio - Carlos Munoz Torrijos" # custom title (optional)
   description: "" # custom description (recommended)
-  canonical: "" # custom canonical URL (optional)
+  canonical: "https://www.carlosmunoztorrijos.com/"
   noindex: false # false (default) or true
 ---
 <br><br>
