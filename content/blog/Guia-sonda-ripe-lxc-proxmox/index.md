@@ -18,41 +18,31 @@ seo:
   canonical: "https://www.carlosmunoztorrijos.com/blog/guia-para-instalar-una-sonda-RIPE-Atlas-lxc-debian-proxmox/" # custom canonical URL (optional)
   noindex: false # false (default) or true
 ---
+![Imagen de portada](./1.png)
 ---
-![test](./1.png)
-<br><br>
+---
+## 1º Crear un contenedor LXC en Proxmox
+Si no tienes una imagen ya descargada de **Debían 12** descargarnos está desde el menú de templates (ver imagen) y posteriormente la usamos en el menú de creación del contenedor.
 
-## 1º Configuración del entorno en Proxmox
+![Ruta para descargar un template en este caso de Debian 12](./2.png)
+<p align="center">Imagen 1: (Ruta para descargar un template en este caso de Debian 12)<p>
+<br>
 
-#### Crear un contenedor LXC en Proxmox
+Requerimientos mminimos:
+-  **1GB** RAM
+-  **1** Nucleo
+-  **4GB** Almacenamiento
+- IP estática (fuera del DHCP del router).<br><br>
 
-##### Configurar la red en el LXC
-<br><br>
-## 2º Instalación de la sonda RIPE Atlas en el LXC
+>**Nota:** Si se dispone de **IPV6** por parte del ISP también se debe configurar para que el router le entregue una dirección.
 
-#### Instalar dependencias
+<br>
 
-#### Obtener el Token
+1. Actualizaciones iniciales 
+Procedemos a actualizar el contenedor con el siguiente comando:
 
+   ```Apt update & upgrade```
+# (ARTICULO EN PROCESO)
 
-#### Instalar la sonda RIPE Atlas
-<br><br>
-## 3º Configuración y puesta en marcha
-
-#### Verificar el estado de la sonda
-
-#### Comprobar conectividad con RIPE Atlas
-
-<br><br>
-## 4º Mantenimiento y monitorización
-
-#### Revisar el estado de la sonda en RIPE Atlas
-
-#### Actualización del software
-
-<br><br>
-## 5º Conclusión
-
-
-<br><br><br><br>
+---
 >*Saludos, amdr0meda*

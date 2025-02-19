@@ -1,1 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Guias principales on Carlos Muñoz Torrijos</title><link>/docs/guides/</link><description>Recent content in Guias principales on Carlos Muñoz Torrijos</description><generator>Hugo</generator><language>en</language><copyright>Copyright (c) 2020-2024 Thulite</copyright><lastBuildDate>Thu, 07 Sep 2023 16:13:18 +0200</lastBuildDate><atom:link href="/docs/guides/index.xml" rel="self" type="application/rss+xml"/><item><title>Cloudflare</title><link>/docs/guides/cloudflare/</link><pubDate>Thu, 07 Sep 2023 16:13:18 +0200</pubDate><guid>/docs/guides/cloudflare/</guid><description>&lt;p>Reference pages are ideal for outlining how things work in terse and clear terms. Less concerned with telling a story or addressing a specific use case, they should give a comprehensive outline of what your documenting.&lt;/p></description></item><item><title>Microsoft</title><link>/docs/guides/microsoft/</link><pubDate>Thu, 07 Sep 2023 16:13:18 +0200</pubDate><guid>/docs/guides/microsoft/</guid><description>&lt;p>Reference pages are ideal for outlining how things work in terse and clear terms. Less concerned with telling a story or addressing a specific use case, they should give a comprehensive outline of what your documenting.&lt;/p></description></item><item><title>Proxmox</title><link>/docs/guides/proxmox/</link><pubDate>Thu, 07 Sep 2023 16:13:18 +0200</pubDate><guid>/docs/guides/proxmox/</guid><description>&lt;p>Reference pages are ideal for outlining how things work in terse and clear terms. Less concerned with telling a story or addressing a specific use case, they should give a comprehensive outline of what your documenting.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Listado de documentación on Carlos Muñoz Torrijos</title><link>/docs/guides/</link><description>Recent content in Listado de documentación on Carlos Muñoz Torrijos</description><generator>Hugo</generator><language>en</language><copyright>Copyright (c) 2020-2024 Thulite</copyright><lastBuildDate>Thu, 07 Sep 2023 16:13:18 +0200</lastBuildDate><atom:link href="/docs/guides/index.xml" rel="self" type="application/rss+xml"/><item><title>Cloudflare</title><link>/docs/guides/cloudflare/</link><pubDate>Thu, 07 Sep 2023 16:13:18 +0200</pubDate><guid>/docs/guides/cloudflare/</guid><description>&lt;p>Pagina donde están todos los comandos, script, bat y ps1 de utilidad.&lt;/p>
+&lt;h2 id="script-1">Script 1&lt;/h2>
+&lt;p>null&lt;/p>
+&lt;h2 id="script-2">Script 2&lt;/h2>
+&lt;p>null&lt;/p>
+&lt;h2 id="script-3">Script 3&lt;/h2>
+&lt;p>null&lt;/p></description></item><item><title>Debian</title><link>/docs/guides/debian/</link><pubDate>Thu, 07 Sep 2023 16:13:18 +0200</pubDate><guid>/docs/guides/debian/</guid><description>&lt;p>Pagina donde están todos los comandos, script, bat y ps1 de utilidad.&lt;/p>
+&lt;h2 id="script-1">Script 1&lt;/h2>
+&lt;p>null&lt;/p>
+&lt;h2 id="script-2">Script 2&lt;/h2>
+&lt;p>null&lt;/p>
+&lt;h2 id="script-3">Script 3&lt;/h2>
+&lt;p>null&lt;/p></description></item><item><title>Información</title><link>/docs/guides/informaci%C3%B3n/</link><pubDate>Thu, 07 Sep 2023 16:13:18 +0200</pubDate><guid>/docs/guides/informaci%C3%B3n/</guid><description>Información de tu conexión</description></item><item><title>Proxmox</title><link>/docs/guides/proxmox/</link><pubDate>Thu, 07 Sep 2023 16:13:18 +0200</pubDate><guid>/docs/guides/proxmox/</guid><description>&lt;p>Pagina donde están todos los comandos, script, bat y ps1 de utilidad.&lt;/p>
+&lt;h2 id="script-1">Script 1&lt;/h2>
+&lt;p>null&lt;/p>
+&lt;h2 id="script-2">Script 2&lt;/h2>
+&lt;p>null&lt;/p>
+&lt;h2 id="script-3">Script 3&lt;/h2>
+&lt;p>null&lt;/p></description></item><item><title>Windows</title><link>/docs/guides/windows/</link><pubDate>Thu, 07 Sep 2023 16:13:18 +0200</pubDate><guid>/docs/guides/windows/</guid><description>&lt;p>Pagina donde están todos los comandos, script, bat y ps1 de utilidad.&lt;/p>
+&lt;h2 id="script-1">Script 1&lt;/h2>
+&lt;p>null&lt;/p>
+&lt;h2 id="script-2">Script 2&lt;/h2>
+&lt;p>null&lt;/p>
+&lt;h2 id="script-3">Script 3&lt;/h2>
+&lt;p>null&lt;/p></description></item></channel></rss>

@@ -1,5 +1,5 @@
 ---
-title: "Cloudflare"
+title: "Debian"
 description: "Pagina donde están todos los comandos, script, bat y ps1 de utilidad."
 summary: ""
 date: 2023-09-07T16:13:18+02:00

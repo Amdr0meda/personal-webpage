@@ -1,6 +1,6 @@
 ---
-title: "Microsoft"
-description: "Reference pages are ideal for outlining how things work in terse and clear terms."
+title: "Windows"
+description: "Pagina donde están todos los comandos, script, bat y ps1 de utilidad."
 summary: ""
 date: 2023-09-07T16:13:18+02:00
 lastmod: 2023-09-07T16:13:18+02:00
@@ -14,8 +14,11 @@ seo:
   noindex: false # false (default) or true
 ---
 
-Reference pages are ideal for outlining how things work in terse and clear terms. Less concerned with telling a story or addressing a specific use case, they should give a comprehensive outline of what your documenting.
+Pagina donde están todos los comandos, script, bat y ps1 de utilidad.
 
-## Further reading
-
-- Read [about reference](https://diataxis.fr/reference/) in the Diátaxis framework
+## Script 1
+null
+## Script 2
+null
+## Script 3
+null
