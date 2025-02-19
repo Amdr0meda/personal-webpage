@@ -1,9 +1,10 @@
 ---
 title: "Guía para instalar una sonda RIPE Atlas en un LXC (Debian) sobre Proxmox"
 description: "Guia para realizar la instalación y configuración de una sonda ATLAS de RIPE, dentro de un contenedor Debian en una instancia de Proxmox."
-summary: "Guia para realizar la instalación y configuración de una sonda ATLAS de RIPE, dentro de un contenedor Debian en una instancia de Proxmox "
+summary: "Pasos necesarios para instalación y configuración de una sonda ATLAS RIPE, dentro de un contenedor Debian en una instancia de Proxmox "
 date: 2025-02-16
-lastmod: 2025-02-16
+lastmod: 2025-02-17
+image: "img_basic.png"
 draft: false
 weight: 50
 categories: []
@@ -18,8 +19,9 @@ seo:
   noindex: false # false (default) or true
 ---
 ---
-
+![test](./1.png)
 <br><br>
+
 ## 1º Configuración del entorno en Proxmox
 
 #### Crear un contenedor LXC en Proxmox

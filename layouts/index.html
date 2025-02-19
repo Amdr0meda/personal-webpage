@@ -8,17 +8,16 @@
       <p class="lead">Soy un administrador de sistemas y en mis ratos libres comparto soluciones, trucos, posts y algún proyecto. Aquí tienes las 3 últimas publicaciones de mi blog.</p>
     </div>
   </div>
+  
   <div class="row justify-content-center mt-4">
     {{ range first 3 .Site.RegularPages }}
-    <div class="col-md-4">
-      <div class="card shadow-sm mb-4">
+    <div class="col-lg-4 col-md-6 col-12 d-flex">
+      <div class="card shadow-sm mb-4 flex-fill">
         <div class="card-body">
-          <h4 class="card-title">
+          <h5 class="card-title">
             <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-          </h4>
-          <br>
-          <p class="card-text">{{ .Summary | truncate 110 }}</p> 
-
+          </h5><br>
+          <p class="card-text">{{ .Summary | truncate 114 }}</p>
           <a href="{{ .RelPermalink }}" class="btn btn-primary">Leer más</a>
         </div>
       </div>
