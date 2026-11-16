@@ -1,0 +1,15 @@
+{{- /* Rejilla de documentación/herramientas + tarjeta "Próximamente". Contexto: lista de páginas. */ -}}
+<div class="tool-grid">
+  {{- range $i, $d := . }}
+  <a class="tool-card" href="{{ .RelPermalink }}">
+    <span class="tool-card__icon" aria-hidden="true">{{ partial "inline-svg" (dict "src" "outline/world" "id" (printf "svg-world-%d" $i) "class" "svg-inline-custom" "role" "presentation") }}</span>
+    <span class="tool-card__title">{{ .Title }}</span>
+    <span class="tool-card__desc">{{ .Params.summary | default .Description }}</span>
+  </a>
+  {{- end }}
+  <div class="tool-card tool-card--soon" aria-disabled="true">
+    <span class="tool-card__icon" aria-hidden="true">{{ partial "inline-svg" (dict "src" "outline/tools" "id" "svg-tools-soon" "class" "svg-inline-custom" "role" "presentation") }}</span>
+    <span class="tool-card__title">Próximamente</span>
+    <span class="tool-card__desc">Más guías y herramientas en camino: Proxmox, Debian, Windows y Cloudflare.</span>
+  </div>
+</div>

@@ -4,4 +4,4 @@
 node_modules
 public
 resources
-docs/robots.txt
+hugo_stats.json

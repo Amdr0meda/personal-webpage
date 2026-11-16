@@ -1,37 +1,41 @@
 ---
 title: "Montaje de Speedtest Tracker en Proxmox + Telegram y configuración"
-description: "Con Speedtest Tracker, es posible monitorear la velocidad de tu conexión a Internet de manera sencilla. Esta herramienta permite realizar pruebas de velocidad automáticamente y recopilar datos sobre el rendimiento de tu conexión."
-summary: "Con Speedtest Tracker, es posible monitorear la velocidad de tu conexión a Internet de manera sencilla. Esta herramienta permite realizar pruebas de velocidad automáticamente y recopilar datos sobre el rendimiento de tu conexión. "
+description: "Cómo instalar Speedtest Tracker en un contenedor LXC de Proxmox, automatizar los tests de velocidad y recibir notificaciones en tu propio bot de Telegram."
+summary: "Monitoriza la velocidad de tu conexión a Internet con Speedtest Tracker: tests automáticos, histórico de resultados y avisos en Telegram."
+slug: "speedtest-tracker-proxmox-telegram"
+aliases:
+  - "/blog/montaje-de-speedtest-tracker-en-proxmox--telegram-y-configuración/"
 date: 2024-09-20
 lastmod: 2025-03-16
 draft: false
+wip: true
 weight: 50
 categories: []
-tags: [proxmox,lxc,speedtest,speedtestracker,telegram]
+tags: [proxmox, lxc, speedtest, speedtestracker, telegram]
 contributors: []
 pinned: false
 homepage: false
 seo:
-  title: "Montaje de Speedtest Tracker en Proxmox + Telegram y configuración" # custom title (optional)
-  description: "Con Speedtest Tracker, es posible monitorear la velocidad de tu conexión a Internet de manera sencilla. Esta herramienta permite realizar pruebas de velocidad automáticamente y recopilar datos sobre el rendimiento. En este artículo, veremos cómo instalar y configurar Speedtest Tracker en un contenedor LXC, integración con tu propio bot en Telegram, detallando el proceso de implementación." # custom description (recommended)
-  canonical: "https://www.carlosmunoztorrijos.com/blog/montaje-de-speedtest-tracker-en-proxmox--telegram-y-configuración/" # custom canonical URL (optional)
-  noindex: false # false (default) or true
+  title: "Speedtest Tracker en Proxmox con avisos en Telegram"
+  description: "Cómo instalar Speedtest Tracker en un contenedor LXC de Proxmox, automatizar los tests de velocidad y recibir notificaciones en tu propio bot de Telegram."
+  canonical: ""
+  noindex: false
 ---
-![Imagen de portada](./1.png)
----
----
-## 1º Notas y consideraciones
-En este artículo, veremos cómo instalar y configurar la herramienta Speedtest-Tracker sobre un LXC, automatizando los tests e integrandolo con notificaciones en tu propio bot de telegram.
-## 2º Instalación del contenedor
-## 3º Configuraciones iniciales
-## 4º Parametrización de Speedtest Tracker
-## 5º Automatización y CronJobs
-## 6º Integración con Telegram
-## 7º Resultados
-## Enlaces de referencia e información
-https://github.com/alexjustesen/speedtest-tracker
 
-https://docs.speedtest-tracker.dev/
+## 1. Notas y consideraciones
 
-<br><br><br><br>
->*Saludos, amdr0meda*
+En este artículo veremos cómo instalar y configurar **Speedtest Tracker** sobre un contenedor LXC, automatizando los tests e integrándolo con notificaciones en tu propio bot de Telegram.
+
+> 🚧 **Artículo en proceso.** Estas son las secciones que iré completando:
+
+1. Instalación del contenedor
+2. Configuraciones iniciales
+3. Parametrización de Speedtest Tracker
+4. Automatización y cron jobs
+5. Integración con Telegram
+6. Resultados
+
+## Enlaces de referencia
+
+- [Repositorio de Speedtest Tracker en GitHub](https://github.com/alexjustesen/speedtest-tracker)
+- [Documentación oficial de Speedtest Tracker](https://docs.speedtest-tracker.dev/)

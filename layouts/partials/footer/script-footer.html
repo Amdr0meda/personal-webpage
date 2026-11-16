@@ -1,0 +1,75 @@
+{{- /*
+  Igual que el script-footer de Doks, pero el buscador (FlexSearch + modal, ~100 KB)
+  ya no se descarga en cada página: se carga al acercar el ratón/dedo a la lupa,
+  al enfocarla con el teclado o al pulsar Ctrl+K, y entonces abre el buscador.
+*/ -}}
+{{ partial "footer/esbuild" (dict "src" "js/app.js" "targetPath" "main.js" "load" "async" "transpile" false) -}}
+
+{{ partial "footer/script-footer-custom.html" . -}}
+
+{{ partial "main/showFlexSearch" . -}}
+{{ $showFlexSearch := .Scratch.Get "showFlexSearch" -}}
+{{ if $showFlexSearch -}}
+  {{- $flex := partial "footer/esbuild-template" (dict "src" "js/flexsearch.js" "load" "async" "transpile" false "isMultilingual" false "searchLimit" site.Params.doks.searchLimit) -}}
+  {{- $modal := partial "footer/esbuild" (dict "src" "js/search-modal.js" "load" "async" "transpile" false) -}}
+  {{- $scripts := slice -}}
+  {{- range slice $flex $modal -}}
+    {{- $s := string . -}}
+    {{- $src := index (findRESubmatch `src="([^"]+)"` $s 1) 0 1 -}}
+    {{- $sri := index (findRESubmatch `integrity="([^"]+)"` $s 1) 0 1 -}}
+    {{- $scripts = $scripts | append (dict "src" $src "integrity" $sri) -}}
+  {{- end }}
+<script>
+(function () {
+  var scripts = {{ $scripts | jsonify | safeJS }};
+  var state = 0; // 0 sin cargar, 1 cargando, 2 listo
+  var pendingOpen = false;
+  var toggles = ["searchToggleDesktop", "searchToggleMobile"]
+    .map(function (id) { return document.getElementById(id); })
+    .filter(Boolean);
+
+  function open() {
+    var t = toggles.filter(function (el) { return el.offsetParent !== null; })[0] || toggles[0];
+    if (t) t.click();
+  }
+
+  function load() {
+    if (state) return;
+    state = 1;
+    var left = scripts.length;
+    scripts.forEach(function (s) {
+      var el = document.createElement("script");
+      el.src = s.src;
+      el.integrity = s.integrity;
+      el.crossOrigin = "anonymous";
+      el.onload = function () {
+        if (--left === 0) {
+          state = 2;
+          if (pendingOpen) { pendingOpen = false; open(); }
+        }
+      };
+      document.body.appendChild(el);
+    });
+  }
+
+  toggles.forEach(function (t) {
+    ["pointerenter", "focus", "touchstart"].forEach(function (ev) {
+      t.addEventListener(ev, load, { once: true, passive: true });
+    });
+    t.addEventListener("click", function () {
+      if (state === 2) return; // ya lo gestiona el propio buscador
+      pendingOpen = true;
+      load();
+    });
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (state !== 2 && e.ctrlKey && e.key === "k") {
+      e.preventDefault();
+      pendingOpen = true;
+      load();
+    }
+  });
+})();
+</script>
+{{- end }}

@@ -1,0 +1,47 @@
+{{ define "main" }}
+<article class="post">
+  <header class="post__head">
+    <a class="post__back" href="{{ "blog/" | relURL }}">← Blog</a>
+    <h1 class="post__title">{{ .Title }}</h1>
+    <div class="post__meta">
+      <span>{{ site.Params.author }}</span>
+      <span aria-hidden="true">·</span>
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ time.Format ":date_long" .Date }}</time>
+      {{- if gt .Lastmod .Date }}
+      <span aria-hidden="true">·</span>
+      <span>Actualizado el <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ time.Format ":date_long" .Lastmod }}</time></span>
+      {{- end }}
+      <span aria-hidden="true">·</span>
+      <span>{{ .ReadingTime }} min de lectura</span>
+      {{- if .Params.wip }}<span class="badge-wip">En proceso</span>{{ end }}
+    </div>
+  </header>
+
+  {{- with .Resources.GetMatch "{*cover*,*feature*,*thumbnail*}" }}
+    {{- $sm := .Resize "480x webp q78 drawing" }}
+    {{- $md := .Resize "800x webp q78 drawing" }}
+    {{- $lg := .Resize (printf "%dx webp q78 drawing" (cond (gt .Width 1200) 1200 .Width)) }}
+    <figure class="post__cover">
+      <img src="{{ $md.RelPermalink }}" srcset="{{ $sm.RelPermalink }} 480w, {{ $md.RelPermalink }} 800w, {{ $lg.RelPermalink }} {{ $lg.Width }}w" sizes="(max-width: 48rem) calc(100vw - 2rem), 46rem" width="{{ $lg.Width }}" height="{{ $lg.Height }}" alt="" fetchpriority="high" decoding="async">
+    </figure>
+  {{- end }}
+
+  <div class="post__body">
+    {{ with .Params.summary }}<p class="lead">{{ . }}</p>{{ end }}
+    {{ .Content }}
+  </div>
+
+  <footer class="post__foot">
+    {{- with .Params.tags }}
+    <ul class="post-card__tags">
+      {{- range . }}<li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}/">#{{ . }}</a></li>{{ end }}
+    </ul>
+    {{- end }}
+    <p class="post__sign">Saludos, <strong>amdr0meda</strong> 👋</p>
+    <nav class="post__nav" aria-label="Más publicaciones">
+      {{- with .PrevInSection }}<a class="post__nav-link" href="{{ .RelPermalink }}"><span>← Siguiente</span>{{ .Title }}</a>{{ else }}<span></span>{{ end }}
+      {{- with .NextInSection }}<a class="post__nav-link post__nav-link--next" href="{{ .RelPermalink }}"><span>Anterior →</span>{{ .Title }}</a>{{ end }}
+    </nav>
+  </footer>
+</article>
+{{ end }}

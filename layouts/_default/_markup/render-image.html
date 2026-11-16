@@ -1,0 +1,37 @@
+{{- /*
+  Imágenes del contenido Markdown.
+  - Busca la imagen en el bundle del post (o en assets/).
+  - Genera WebP en varios anchos (srcset) para que cada pantalla descargue solo lo que necesita.
+  - Ancho y alto explícitos para evitar saltos de maquetación; carga diferida.
+*/ -}}
+{{- $dest := .Destination -}}
+{{- $u := urls.Parse $dest -}}
+{{- $img := "" -}}
+{{- if not $u.IsAbs -}}
+  {{- $path := strings.TrimPrefix "./" $u.Path -}}
+  {{- $img = or (.Page.Resources.Get $path) (resources.Get $path) -}}
+{{- end -}}
+
+{{- if and $img (in (slice "png" "jpeg" "jpg" "webp") $img.MediaType.SubType) -}}
+  {{- $max := cond (gt $img.Width 1440) 1440 $img.Width -}}
+  {{- $widths := slice -}}
+  {{- range slice 480 800 1200 -}}
+    {{- if lt . $max }}{{ $widths = $widths | append . }}{{ end -}}
+  {{- end -}}
+  {{- $widths = $widths | append $max -}}
+  {{- $srcset := slice -}}
+  {{- $fallback := "" -}}
+  {{- range $widths -}}
+    {{- $r := $img.Resize (printf "%dx webp q78 drawing" .) -}}
+    {{- $srcset = $srcset | append (printf "%s %dw" $r.RelPermalink .) -}}
+    {{- if or (not $fallback) (le . 800) }}{{ $fallback = $r }}{{ end -}}
+  {{- end -}}
+  {{- $tag := printf `<img src="%s" srcset="%s" sizes="(max-width: 48rem) calc(100vw - 2rem), 46rem" width="%d" height="%d" alt="%s" loading="lazy" decoding="async">` $fallback.RelPermalink (delimit $srcset ", ") $img.Width $img.Height (.Text | plainify) -}}
+  {{- if and .IsBlock .Title -}}
+<figure>{{ $tag | safeHTML }}<figcaption>{{ .Title }}</figcaption></figure>
+  {{- else -}}
+{{ $tag | safeHTML }}
+  {{- end -}}
+{{- else -}}
+<img src="{{ $dest | safeURL }}" alt="{{ .Text | plainify }}"{{ with .Title }} title="{{ . }}"{{ end }} loading="lazy" decoding="async">
+{{- end -}}

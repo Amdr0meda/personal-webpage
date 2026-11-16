@@ -1,2 +1,2 @@
-# Overrides for production environment
-baseurl = "/"
+# Overrides for production environment (GitHub Pages + dominio propio)
+baseurl = "https://www.carlosmunoztorrijos.com/"

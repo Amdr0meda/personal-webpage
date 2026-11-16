@@ -1,0 +1,11 @@
+{{ define "main" }}
+<header class="page-head">
+  <p class="hero__prompt">#{{ .Title | lower }}</p>
+  <h1>Publicaciones sobre {{ .Title }}</h1>
+</header>
+<div class="post-grid">
+  {{- range .Pages.ByDate.Reverse }}
+    {{ partial "custom/post-card.html" . }}
+  {{- end }}
+</div>
+{{ end }}

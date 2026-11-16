@@ -1,5 +1,5 @@
 ---
-title: "Aviso Legal y descargo de responsabilidad"
+title: "Aviso legal y descargo de responsabilidad"
 description: "Aviso legal y descargo de responsabilidad"
 summary: ""
 date: 2024-09-28
@@ -14,7 +14,6 @@ seo:
 ---
 - La información presentada en este sitio tiene fines informativos y educativos exclusivamente.
 
-- Si decides distribuir el contenido, se requiere la debida atribución y mención a __carlosmunoztorrijos.com__
+- Si decides distribuir el contenido, se requiere la debida atribución y mención a **carlosmunoztorrijos.com**
 
 - No asumo responsabilidad alguna por el uso indebido que puedas dar a la información proporcionada.
-<br><br>

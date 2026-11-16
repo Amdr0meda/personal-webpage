@@ -1,28 +1,65 @@
 {{ define "main" }}
-<section class="section container-fluid mt-n3 pb-3">
-  <div class="row justify-content-center">
-    <div class="col-lg-12 text-center">
-      <h1>¡Hola! Bienvenido</h1>
-    </div>
-    <div class="col-lg-9 col-xl-8 text-center">
-      <p class="lead">Soy un administrador de sistemas y en mis ratos libres comparto soluciones, trucos, posts y algún proyecto. Aquí tienes las 3 últimas publicaciones de mi blog.</p>
+{{- $h := site.Params.home -}}
+{{- $posts := where site.RegularPages "Section" "blog" -}}
+{{- $docs := where site.RegularPages "Section" "docs" -}}
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__text">
+    <p class="hero__prompt"><span class="hero__prompt-user">carlos@homelab</span>:<span class="hero__prompt-path">~</span>$ whoami<span class="hero__cursor" aria-hidden="true"></span></p>
+    <h1 id="hero-title" class="hero__title">{{ site.Title }}</h1>
+    <p class="hero__role">{{ $h.role }}</p>
+    {{ with .Params.lead }}<p class="hero__lead">{{ . }}</p>{{ end }}
+    <div class="hero__actions">
+      <a class="btn btn-primary btn-lg" href="{{ "blog/" | relURL }}">Leer el blog</a>
+      <a class="btn btn-outline-primary btn-lg" href="{{ "sobre-mi/" | relURL }}">Sobre mí</a>
+      <ul class="hero__social">
+      {{- with $h.github }}<li><a href="{{ . }}" rel="me noopener" target="_blank" aria-label="GitHub">{{ partial "inline-svg" (dict "src" "outline/brand-github" "class" "svg-inline-custom" "role" "presentation" "aria-hidden" "true") }}<span>GitHub</span></a></li>{{ end }}
+      {{- with $h.linkedin }}<li><a href="{{ . }}" rel="me noopener" target="_blank" aria-label="LinkedIn">{{ partial "inline-svg" (dict "src" "outline/brand-linkedin" "class" "svg-inline-custom" "role" "presentation" "aria-hidden" "true") }}<span>LinkedIn</span></a></li>{{ end }}
+      {{- with $h.email }}<li><a href="mailto:{{ . }}" aria-label="Email">{{ partial "inline-svg" (dict "src" "outline/mail" "class" "svg-inline-custom" "role" "presentation" "aria-hidden" "true") }}<span>Email</span></a></li>{{ end }}
+      </ul>
     </div>
   </div>
-  
-  <div class="row justify-content-center mt-4">
-    {{ range first 3 .Site.RegularPages }}
-    <div class="col-lg-4 col-md-6 col-12 d-flex">
-      <div class="card shadow-sm mb-4 flex-fill">
-        <div class="card-body">
-          <h5 class="card-title">
-            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-          </h5><br>
-          <p class="card-text">{{ .Summary | truncate 114 }}</p>
-          <a href="{{ .RelPermalink }}" class="btn btn-primary">Leer más</a>
-        </div>
-      </div>
+  {{- with resources.Get "images/carlos-avatar.jpg" }}
+    {{- $sm := .Resize "240x240 webp q80 photo" }}
+    {{- $lg := .Resize "480x480 webp q80 photo" }}
+    <div class="hero__avatar">
+      <img src="{{ $lg.RelPermalink }}" srcset="{{ $sm.RelPermalink }} 240w, {{ $lg.RelPermalink }} 480w" sizes="(max-width: 767px) 120px, 240px" width="240" height="240" alt="Foto de {{ site.Title }}" fetchpriority="high" decoding="async">
     </div>
-    {{ end }}
+  {{- end }}
+</section>
+
+<section class="home-section" aria-labelledby="latest-title">
+  <div class="home-section__head">
+    <h2 id="latest-title">Últimas publicaciones</h2>
+    <a class="home-section__more" href="{{ "blog/" | relURL }}">Ver todas →</a>
+  </div>
+  <div class="post-grid">
+    {{- range first 3 $posts.ByDate.Reverse }}
+      {{ partial "custom/post-card.html" . }}
+    {{- end }}
   </div>
 </section>
+
+{{- with $docs }}
+<section class="home-section" aria-labelledby="docs-title">
+  <div class="home-section__head">
+    <h2 id="docs-title">Documentación y herramientas</h2>
+    <a class="home-section__more" href="{{ "docs/" | relURL }}">Ver todo →</a>
+  </div>
+  {{ partial "custom/tool-grid.html" . }}
+</section>
+{{- end }}
+
+{{- with site.Taxonomies.tags }}
+<section class="home-section" aria-labelledby="topics-title">
+  <div class="home-section__head">
+    <h2 id="topics-title">Temas</h2>
+  </div>
+  <ul class="topic-list">
+    {{- range .ByCount }}
+    <li><a href="{{ .Page.RelPermalink }}">#{{ .Page.Title | lower }} <span>{{ .Count }}</span></a></li>
+    {{- end }}
+  </ul>
+</section>
+{{- end }}
 {{ end }}

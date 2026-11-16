@@ -1,0 +1,13 @@
+{{ define "main" }}
+<header class="page-head">
+  <h1>{{ .Title }}</h1>
+  {{ with .Params.summary }}<p class="page-head__lead">{{ . }}</p>{{ end }}
+</header>
+{{- $paginator := .Paginate .Pages.ByDate.Reverse }}
+<div class="post-grid post-grid--list">
+  {{- range $paginator.Pages }}
+    {{ partial "custom/post-card.html" . }}
+  {{- end }}
+</div>
+{{ template "_internal/pagination.html" . }}
+{{ end }}

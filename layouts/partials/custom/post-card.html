@@ -1,0 +1,27 @@
+{{- /* Tarjeta de post reutilizable. Contexto: página del blog. */ -}}
+{{- $cover := .Resources.GetMatch "{*cover*,*feature*,*thumbnail*}" -}}
+{{- if not $cover }}{{ $cover = resources.Get "images/default-cover.png" }}{{ end -}}
+<article class="post-card">
+  {{- with $cover }}
+    {{- $sm := .Fill "400x200 webp q78 Center drawing" }}
+    {{- $lg := .Fill "800x400 webp q78 Center drawing" }}
+    <div class="post-card__media">
+      <img src="{{ $sm.RelPermalink }}" srcset="{{ $sm.RelPermalink }} 400w, {{ $lg.RelPermalink }} 800w" sizes="(max-width: 575px) calc(100vw - 2rem), 400px" width="400" height="200" alt="" loading="lazy" decoding="async">
+    </div>
+  {{- end }}
+  <div class="post-card__body">
+    <div class="post-card__meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ time.Format ":date_medium" .Date }}</time>
+      <span aria-hidden="true">·</span>
+      <span>{{ .ReadingTime }} min</span>
+      {{- if .Params.wip }}<span class="badge-wip">En proceso</span>{{ end }}
+    </div>
+    <h3 class="post-card__title"><a class="stretched-link" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    <p class="post-card__summary">{{ .Params.summary | default .Summary | plainify | truncate 160 }}</p>
+    {{- with .Params.tags }}
+    <ul class="post-card__tags" aria-label="Etiquetas">
+      {{- range first 4 . }}<li>#{{ . }}</li>{{ end }}
+    </ul>
+    {{- end }}
+  </div>
+</article>

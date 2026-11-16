@@ -1,0 +1,37 @@
+{{ define "main" }}
+{{- $h := site.Params.home -}}
+<article class="about">
+  <header class="about__head">
+    {{- with resources.Get "images/carlos-avatar.jpg" }}
+      {{- $sm := .Resize "240x240 webp q80 photo" }}
+      {{- $lg := .Resize "320x320 webp q80 photo" }}
+      <img class="about__avatar" src="{{ $lg.RelPermalink }}" srcset="{{ $sm.RelPermalink }} 240w, {{ $lg.RelPermalink }} 320w" sizes="(max-width: 575px) 112px, 160px" width="160" height="160" alt="Foto de {{ site.Title }}" fetchpriority="high" decoding="async">
+    {{- end }}
+    <div>
+      <h1>{{ .Params.headline | default .Title }}</h1>
+      {{ with .Params.summary }}<p class="about__lead">{{ . }}</p>{{ end }}
+      <ul class="hero__social">
+        {{- with $h.github }}<li><a href="{{ . }}" rel="me noopener" target="_blank">{{ partial "inline-svg" (dict "src" "outline/brand-github" "id" "svg-gh-about" "class" "svg-inline-custom" "role" "presentation" "aria-hidden" "true") }}<span>GitHub</span></a></li>{{ end }}
+        {{- with $h.linkedin }}<li><a href="{{ . }}" rel="me noopener" target="_blank">{{ partial "inline-svg" (dict "src" "outline/brand-linkedin" "id" "svg-li-about" "class" "svg-inline-custom" "role" "presentation" "aria-hidden" "true") }}<span>LinkedIn</span></a></li>{{ end }}
+        {{- with $h.email }}<li><a href="mailto:{{ . }}">{{ partial "inline-svg" (dict "src" "outline/mail" "id" "svg-mail-about" "class" "svg-inline-custom" "role" "presentation" "aria-hidden" "true") }}<span>{{ . }}</span></a></li>{{ end }}
+      </ul>
+    </div>
+  </header>
+
+  <div class="about__grid">
+    <div class="about__body">
+      {{ .Content }}
+    </div>
+    {{- with .Params.skills }}
+    <aside class="about__skills" aria-label="Conocimientos">
+      {{- range . }}
+      <div class="skill-group">
+        <h2>{{ .group }}</h2>
+        <ul>{{ range .items }}<li>{{ . }}</li>{{ end }}</ul>
+      </div>
+      {{- end }}
+    </aside>
+    {{- end }}
+  </div>
+</article>
+{{ end }}

@@ -1,106 +1,115 @@
 ---
-title: "Contenedor LXC en Proxmox con Qbittorrent + Wireguard (Mullvad)"
-description: "Tutorial para montar un contenedor LXC en Proxmox partiendo de una imagen, añadiendole el motor de bittorrent Qbittorrent, configurado para usar una VPN de Mullvad de WireGuard."
-summary: "En este post, se montará un contenedor LXC (Ubuntu) en Proxmox y lo configuraremos para que funcione a través de un tunel VPN de Mullvad, utilizando el protocolo WireGuard."
+title: "Contenedor LXC en Proxmox con qBittorrent + WireGuard (Mullvad)"
+description: "Tutorial para montar un contenedor LXC en Proxmox con qBittorrent-nox, configurado para descargar únicamente a través de un túnel WireGuard de Mullvad."
+summary: "Montamos un contenedor LXC (Ubuntu) en Proxmox con qBittorrent y lo configuramos para que todo el tráfico salga por un túnel VPN de Mullvad usando WireGuard."
+slug: "qbittorrent-wireguard-mullvad-lxc-proxmox"
+aliases:
+  - "/blog/contenedor-lxc-en-proxmox-con-qbittorrent--wireguard-mullvad/"
 date: 2024-09-28
-lastmod: 2024-09-28
+lastmod: 2026-11-16
 draft: false
 weight: 50
 categories: []
-tags: [proxmox,lxc,qbittorent,mullvad,wireguard,vpn]
+tags: [proxmox, lxc, qbittorrent, mullvad, wireguard, vpn]
 contributors: []
 pinned: false
 homepage: false
 seo:
-  title: "Contenedor LXC en Proxmox con Qbittorrent + Wireguard (Mullvad)" # custom title (optional)
-  description: "Tutorial para montar un contenedor LXC en Proxmox partiendo de una imagen, añadiendole el motor de bittorrent Qbittorrent, configurado para usar una VPN de Mullvad de WireGuard." # custom description (recommended)
-  canonical: "https://www.carlosmunoztorrijos.com/blog/contenedor-lxc-en-proxmox-con-qbittorrent--wireguard-mullvad/" # custom canonical URL (optional)
-  noindex: false # false (default) or true
+  title: "qBittorrent + WireGuard (Mullvad) en un LXC de Proxmox"
+  description: "Tutorial para montar un contenedor LXC en Proxmox con qBittorrent-nox, configurado para descargar únicamente a través de un túnel WireGuard de Mullvad."
+  canonical: ""
+  noindex: false
 ---
----
-<br><br>
-## 1º Crear un contendedor
 
-Se  usará un template de ubuntu 23.04,  __ubuntu-23.04-standard_23.04-1_amd64.tar.zst__. Para descargar el template se debe realizar desde la pestaña "CT Templates" de tu unidad, en mi caso nas-amdr0meda-ns. Seleccionando el botón **Templates** y proceder a descargar.
-<br><br>
-![1º Crear un contendedor](./1.png)
-<br><br><br><br>
-Posteriormente creamos un contenedor LXC usando el template anterior, en mi caso con 2 nucleos, 4Gb de ram y 512Mb swap. Desmarcando que sea un contenedor sin privilegios para tener acceso completo de escritura, (si posteriormente queremos compartir via SAMBA los ficheros).
+## 1. Crear el contenedor
 
-![2º Crear un contendedor](./2.png)
-<br><br>
-> Nota: En el ejemplo se asgina una IP fija (192.168.1.212). __Es recomendable asignar una IP fija al contenedor__.
+Usaremos la plantilla de Ubuntu 23.04, `ubuntu-23.04-standard_23.04-1_amd64.tar.zst`. Se descarga desde la pestaña **CT Templates** de tu almacenamiento (en mi caso `nas-amdr0meda-ns`), pulsando el botón **Templates**.
 
-<br><br>
-## 2º Configuración inicial del contenedor
+![Descarga de la plantilla de Ubuntu desde CT Templates](./1.png)
 
-Procedemos a iniciar el contenedor y conectarnos por consola. Nos autenticamos con el usuario --root-- y la clave que hemos asignado anteriormente. 
+Después creamos un contenedor LXC con esa plantilla; en mi caso con 2 núcleos, 4 GB de RAM y 512 MB de swap. Desmarco la opción de contenedor **sin privilegios** para tener acceso completo de escritura (útil si después quieres compartir los ficheros por Samba).
 
-Antes de seguir con los proximos pasos debemos de actualizar todos los paquetes con el siguiente comando:
-```
+![Asistente de creación del contenedor LXC en Proxmox](./2.png)
+
+> **Nota:** en el ejemplo se asigna una IP fija (`192.168.1.212`). **Es recomendable asignar una IP fija al contenedor.**
+
+## 2. Configuración inicial del contenedor
+
+Inicia el contenedor y conéctate por consola con el usuario `root` y la contraseña que asignaste antes.
+
+Antes de seguir, actualiza todos los paquetes:
+
+```bash
 apt update && apt upgrade -y
 ```
 
-Posteriormente necesitamos instalar wireguard, las herramientas de Wireguard, curl, qbittorrent-nox, cifs-utils y iftop.
-```
+Instala WireGuard y sus herramientas, `curl`, `qbittorrent-nox`, `cifs-utils` e `iftop`:
+
+```bash
 apt install wireguard wireguard-tools curl qbittorrent-nox cifs-utils iftop
-
 ```
 
-Ahora que ya tenemos instalado cifs-utils podemos o bien montar un recurso compartido donde se guardarán las descargas, como puede ser un NAS u omitir este paso y usar el almacenamiento de la maquina.
+Con `cifs-utils` instalado puedes montar un recurso compartido (por ejemplo un NAS) donde guardar las descargas, u omitir este paso y usar el almacenamiento del propio contenedor.
 
-> Si queremos configurar el almacenamiento compartido se hace como cualquier otro en el siguiente archivo (Necesario reiniciar el contenedor al finalizar):
-```
-nano /etc/fstab
-```
-<br><br>
-## 3º Configuración del tunel VPN (Mullvad)
-En este punto yo uso el proveedor de servicio VPN Mullvad, la configuración es independiente del proveedor, lo unico diferente es la forma de conseguir los datos necesarios, en el caso de Mullvad.
+> Si quieres usar almacenamiento compartido, añádelo como cualquier otro montaje en `/etc/fstab` y reinicia el contenedor al terminar:
+>
+> ```bash
+> nano /etc/fstab
+> ```
 
-En su web nos ubicamos en __"Configuración de WireGuard"__ y ahcemos clic en "Generar clave":
-<br><br>
-![3º Configuración del tunel VPN (Mullvad)](./3.png)
-<br><br>
-Y desplazandose hacia abajo seleccionamos el pais, ciudad y servidor. Para finalizar descargamos el fichero y lo guardamos.
-<br><br>
-![4º Configuración del tunel VPN (Mullvad)](./4.png)
+## 3. Configuración del túnel VPN (Mullvad)
 
+Yo uso Mullvad como proveedor de VPN, pero la configuración es la misma con cualquier proveedor que ofrezca WireGuard; solo cambia la forma de obtener el fichero de configuración.
 
-Ahora mueve el fichero de configuración a la maquina y dejalo en la ruta /etc/wireguard/ con el siguiente comando:
-```
+En la web de Mullvad ve a **Configuración de WireGuard** y pulsa **Generar clave**:
+
+![Generar clave de WireGuard en Mullvad](./3.png)
+
+Más abajo elige país, ciudad y servidor, y descarga el fichero de configuración:
+
+![Selección de servidor y descarga del fichero de configuración](./4.png)
+
+Copia el fichero al contenedor y muévelo a `/etc/wireguard/`:
+
+```bash
 mv FICHERO_DESCARGADO.conf /etc/wireguard/wireguard-vpn.conf
 ```
-![5º Configuración del tunel VPN (Mullvad)](./5.png)
 
-(En mi caso el fichero se llama __it-mil-wg-002__)
-<br><br>
-## 4º Validación del tunel e inicio automatico
+![Fichero de configuración de WireGuard en /etc/wireguard](./5.png)
 
-Iniciamos el tunel con:
-```
+(En mi caso el fichero se llamaba `it-mil-wg-002`.)
+
+## 4. Validación del túnel e inicio automático
+
+Levanta el túnel:
+
+```bash
 wg-quick up wireguard-vpn
 ```
 
-Para validar que la interfaz esta levantada y funcionando escribimos ``ìp addr show``.
-![6º Configuración del tunel VPN (Mullvad)](./6.png)
+Comprueba que la interfaz está levantada con `ip addr show`:
 
-Con el siguiente comando nos aseguramos de que se vuelva a conectar automaticamente cada vez que se incie el contenedor:
-```
+![Interfaz de WireGuard levantada](./6.png)
+
+Y habilita el servicio para que el túnel se levante automáticamente cada vez que arranque el contenedor:
+
+```bash
 systemctl enable wg-quick@wireguard-vpn
 ```
-<br><br>
 
-## 5º Configuración de Qbittorrent (Nox)
+## 5. Configuración de qBittorrent (nox)
 
-Se ha instalado la versión sin interfaz grafica, la gestión se realizará desde el entorno web pero antes tambien tenemos que crear una tarea en el gestor de servicios para que inicie qBittorent con cada encendido para eso creamos el siguiente archivo:
-```
+Hemos instalado la versión sin interfaz gráfica; la gestión se hace desde la interfaz web. Antes hay que crear un servicio de systemd para que qBittorrent arranque con el contenedor:
+
+```bash
 nano /etc/systemd/system/qbittorrent-nox.service
 ```
 
-Y dentro escribimos el siguiente codigo (Estamos escribiendo las configuraciones necesarias para indicar que se ejecute el servicio "abittorrent-nox"):
-```
+Con este contenido:
+
+```ini
 [Unit]
-Description=servicio_qbittorrent
+Description=qBittorrent-nox
 Documentation=man:qbittorrent-nox(1)
 Wants=network-online.target
 After=network-online.target nss-lookup.target
@@ -113,31 +122,28 @@ ExecStart=/usr/bin/qbittorrent-nox
 WantedBy=multi-user.target
 ```
 
+Habilita el servicio y reinicia para comprobar que todo arranca solo:
 
-Ahora habilitamos el servicio para luego reiniciar el host y verificar su adecuado funcionamiento.
-```
+```bash
 systemctl enable qbittorrent-nox && reboot
 ```
 
-- (Nota: Con && concatenas comandos como en el ejemplo anterior)
-<br><br>
+> Con `&&` encadenas comandos: el segundo solo se ejecuta si el primero termina bien.
 
-## 6º Vinculación de la interfaz VPN (Wireguard) con Qbittorrent
+## 6. Vincular qBittorrent a la interfaz de WireGuard
 
-Si todo ha ido bien debemos de poder acceder a la interfaz web de qBittorrent desde la IP de la maquina por el puerto :8080
-``http://192.168.1.212:8080``
+Si todo ha ido bien, ya puedes entrar en la interfaz web de qBittorrent desde la IP del contenedor en el puerto 8080: `http://192.168.1.212:8080`.
 
-![7º Configuración del tunel VPN con Qbittorrent](./7.png)
+![Interfaz web de qBittorrent](./7.png)
 
-El usuario por defecto es ``admin`` y la clave ``adminadmin``. Es __altamente recomendable__ cambiar estas credenciales después del primer uso.
-<br><br>
+El usuario por defecto es `admin` y la contraseña `adminadmin`. Es **muy recomendable** cambiar estas credenciales tras el primer acceso.
 
-Abriendo la configuración y desplazandonos hasta __"Advanced"__ seleccionamos la interfaz de red del tunel VPN y en dirección IP la que nos facilita dicho tunel.
+> En versiones recientes de qBittorrent (4.6.1 en adelante) ya no hay contraseña por defecto: se genera una temporal que aparece en el log del servicio (`journalctl -u qbittorrent-nox`).
 
-De esta manera finalizamos la configuración basica. A partir de ahora todos los torrents/magnets que descarguemos será a traves del tunel VPN.
+En las opciones, ve a **Advanced** y selecciona como interfaz de red la del túnel VPN, y como dirección IP la que te asigna el túnel.
 
-![8º Configuración del tunel VPN con Qbittorrent](./8.png)
-<br><br>
-Y eso es todo, ¡ahora puedes descargar tus torrents desde un pequeño contenedor, solo necesitas acceder via web a la interfaz y escribir tus magnets o adjuntar los .torrents y qBittorrent se encargará de descargarlos por la vpn!
-<br><br><br><br>
->*Saludos, amdr0meda*
+![Opciones avanzadas de qBittorrent con la interfaz de la VPN seleccionada](./8.png)
+
+Con esto termina la configuración básica: a partir de ahora todos los torrents y magnets se descargarán a través del túnel VPN, y si el túnel cae qBittorrent dejará de tener conexión en lugar de salir por tu IP real.
+
+¡Y eso es todo! Ya tienes un contenedor ligero desde el que gestionar tus descargas vía web, siempre a través de la VPN.

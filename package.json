@@ -1,19 +1,18 @@
 {
-  "name": "doks",
-  "version": "1.7.0",
-  "description": "Doks theme",
-  "author": "Thulite",
+  "name": "carlosmunoztorrijos-web",
+  "version": "2.0.0",
+  "description": "Web personal de Carlos Muñoz Torrijos (Hugo + Doks)",
+  "author": "Carlos Muñoz Torrijos",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/thuliteio/doks.git"
+    "url": "https://github.com/Amdr0meda/personal-webpage.git"
   },
   "scripts": {
-    "create": "hugo new",
     "dev": "hugo server --disableFastRender --noHTTPCache",
-    "format": "prettier **/** -w -c",
-    "build": "hugo --minify --gc",
-    "preview": "vite preview --outDir public"
+    "build": "hugo --minify --gc --cleanDestinationDir -d docs",
+    "create": "hugo new",
+    "format": "prettier **/** -w -c"
   },
   "dependencies": {
     "@thulite/doks-core": "^1.7.0",
@@ -32,8 +31,5 @@
   "engines": {
     "node": ">=20.11.0"
   },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  }
+  "private": true
 }

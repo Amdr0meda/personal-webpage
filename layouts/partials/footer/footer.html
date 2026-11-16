@@ -1,0 +1,12 @@
+<footer class="footer">
+  <div class="container-{{ site.Params.doks.containerBreakpoint | default "lg" }}">
+    <div class="footer__inner">
+      <p class="footer__copy">© {{ now.Year }} {{ site.Params.author }}</p>
+      <ul class="footer__links">
+        {{- range site.Menus.footer }}
+        <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+        {{- end }}
+      </ul>
+    </div>
+  </div>
+</footer>

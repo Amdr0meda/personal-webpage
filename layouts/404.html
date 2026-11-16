@@ -1,0 +1,57 @@
+{{ define "main" }}
+<section class="nf" aria-labelledby="nf-title">
+  <p class="nf__code" aria-hidden="true">404</p>
+  <h1 id="nf-title" class="nf__title">Esta página no existe</h1>
+  <p class="nf__lead">Puede que el enlace esté roto o que la página se haya movido. Te llevo a la portada en un momento.</p>
+
+  <div class="nf__term" role="presentation">
+    <div class="nf__term-bar"><span></span><span></span><span></span><em>bash</em></div>
+<pre class="nf__term-body"><code><span class="p">carlos@homelab:~$</span> cd <span id="nf-path">/página-perdida</span>
+<span class="e">bash: cd: <span id="nf-path-2">/página-perdida</span>: No such file or directory</span>
+<span class="p">carlos@homelab:~$</span> curl -sI {{ site.BaseURL | strings.TrimSuffix "/" }}<span id="nf-path-3"></span> | head -1
+<span class="e">HTTP/2 404</span>
+<span class="p">carlos@homelab:~$</span> cd ~ <span class="c"># volviendo a casa en <span id="nf-secs-inline">10</span>s…</span><span class="nf__cursor"></span></code></pre>
+  </div>
+
+  <div class="nf__actions">
+    <a class="btn btn-primary btn-lg" href="{{ "/" | relURL }}">Ir a la portada ahora</a>
+    <button type="button" class="btn btn-outline-primary btn-lg" id="nf-stay">Quedarme aquí</button>
+  </div>
+</section>
+
+<script>
+(function () {
+  var TOTAL = 10;
+  var home = {{ "/" | relURL }};
+  var left = TOTAL;
+  var secsInline = document.getElementById("nf-secs-inline");
+  var stay = document.getElementById("nf-stay");
+
+  // Mostrar la ruta que el visitante intentó abrir
+  var path = decodeURIComponent(location.pathname);
+  ["nf-path", "nf-path-2"].forEach(function (id) { document.getElementById(id).textContent = path; });
+  document.getElementById("nf-path-3").textContent = path;
+
+  function paint() {
+    secsInline.textContent = left;
+  }
+
+  var timer = setInterval(function () {
+    left -= 1;
+    paint();
+    if (left <= 0) {
+      clearInterval(timer);
+      location.replace(home);
+    }
+  }, 1000);
+
+  stay.addEventListener("click", function () {
+    clearInterval(timer);
+    secsInline.parentNode.textContent = "# redirección cancelada";
+    stay.hidden = true;
+  });
+
+  paint();
+})();
+</script>
+{{ end }}

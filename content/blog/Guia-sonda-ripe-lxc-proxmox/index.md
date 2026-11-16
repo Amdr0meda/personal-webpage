@@ -1,48 +1,48 @@
 ---
 title: "Guía para instalar una sonda RIPE Atlas en un LXC (Debian) sobre Proxmox"
-description: "Guia para realizar la instalación y configuración de una sonda ATLAS de RIPE, dentro de un contenedor Debian en una instancia de Proxmox."
-summary: "Pasos necesarios para instalación y configuración de una sonda ATLAS RIPE, dentro de un contenedor Debian en una instancia de Proxmox "
+description: "Guía para instalar y configurar una sonda software RIPE Atlas dentro de un contenedor LXC con Debian 12 en Proxmox VE."
+summary: "Pasos para instalar y configurar una sonda RIPE Atlas dentro de un contenedor Debian en Proxmox."
+slug: "sonda-ripe-atlas-lxc-debian-proxmox"
+aliases:
+  - "/blog/guía-para-instalar-una-sonda-ripe-atlas-en-un-lxc-debian-sobre-proxmox/"
 date: 2025-02-16
 lastmod: 2025-02-17
-image: "img_basic.png"
 draft: false
+wip: true
 weight: 50
 categories: []
-tags: [debian,ripe,atlas,lxc,]
+tags: [proxmox, debian, ripe, atlas, lxc]
 contributors: []
 pinned: false
 homepage: false
 seo:
-  title: "Guía para instalar una sonda RIPE Atlas en un LXC (Debian) sobre Proxmox" # custom title (optional)
-  description: "Guia para realizar la instalación y configuración de una sonda ATLAS de RIPE, dentro de un contenedor Debian en una instancia de Proxmox" # custom description (recommended)
-  canonical: "https://www.carlosmunoztorrijos.com/blog/guia-para-instalar-una-sonda-RIPE-Atlas-lxc-debian-proxmox/" # custom canonical URL (optional)
-  noindex: false # false (default) or true
+  title: "Sonda RIPE Atlas en un LXC Debian sobre Proxmox"
+  description: "Guía para instalar y configurar una sonda software RIPE Atlas dentro de un contenedor LXC con Debian 12 en Proxmox VE."
+  canonical: ""
+  noindex: false
 ---
-![Imagen de portada](./1.png)
----
----
-## 1º Crear un contenedor LXC en Proxmox
-Si no tienes una imagen ya descargada de **Debían 12** descargarnos está desde el menú de templates (ver imagen) y posteriormente la usamos en el menú de creación del contenedor.
 
-![Ruta para descargar un template en este caso de Debian 12](./2.png)
-<p align="center">Imagen 1: (Ruta para descargar un template en este caso de Debian 12)<p>
-<br>
+## 1. Crear un contenedor LXC en Proxmox
 
-Requerimientos mminimos:
--  **1GB** RAM
--  **1** Nucleo
--  **4GB** Almacenamiento
-- IP estática (fuera del DHCP del router).<br><br>
+Si todavía no tienes descargada la plantilla de **Debian 12**, descárgala desde el menú de *CT Templates* (ver imagen) y úsala después en el asistente de creación del contenedor.
 
->**Nota:** Si se dispone de **IPV6** por parte del ISP también se debe configurar para que el router le entregue una dirección.
+![Ruta para descargar la plantilla de Debian 12 en Proxmox](./2.png "Descarga de la plantilla de Debian 12 desde CT Templates")
 
-<br>
+Requisitos mínimos:
 
-1. Actualizaciones iniciales 
-Procedemos a actualizar el contenedor con el siguiente comando:
+- **1 GB** de RAM
+- **1** núcleo
+- **4 GB** de almacenamiento
+- IP estática (fuera del rango DHCP del router)
 
-   ```Apt update & upgrade```
-# (ARTICULO EN PROCESO)
+> **Nota:** si tu ISP te da **IPv6**, configúralo también para que el router le entregue una dirección al contenedor.
 
----
->*Saludos, amdr0meda*
+## 2. Actualizaciones iniciales
+
+Actualiza el contenedor con:
+
+```bash
+apt update && apt upgrade -y
+```
+
+> 🚧 **Artículo en proceso.** Seguiré completando esta guía con la instalación y el registro de la sonda.

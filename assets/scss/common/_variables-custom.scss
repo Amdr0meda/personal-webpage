@@ -1,1 +1,40 @@
-// Put your custom SCSS variables here
+// Paleta propia (sustituye al morado por defecto de Doks)
+
+// Modo claro
+$cmt-accent: #0d7c72;
+$cmt-accent-strong: #0a5f58;
+$cmt-ink: #17212b;
+$cmt-muted: #5b6876;
+$cmt-bg: #ffffff;
+$cmt-surface: #f5f7f9;
+$cmt-border: #e3e8ed;
+
+// Modo oscuro
+$cmt-accent-dark: #4fd1c0;
+$cmt-ink-dark: #d6dde4;
+$cmt-muted-dark: #8b98a6;
+$cmt-bg-dark: #0d1117;
+$cmt-surface-dark: #151b23;
+$cmt-border-dark: #252e39;
+
+$primary: $cmt-accent;
+$body-color: $cmt-ink;
+$link-color: $cmt-accent;
+$link-hover-color: $cmt-accent-strong;
+
+$body-bg-dark: $cmt-bg-dark;
+$body-overlay-dark: $cmt-surface-dark;
+$border-dark: $cmt-border-dark;
+$body-color-dark: $cmt-ink-dark;
+$headings-color-dark: #f3f6f9;
+$link-color-dark: $cmt-accent-dark;
+$button-color-dark: $cmt-accent-dark;
+$focus-color-dark: lighten($cmt-accent-dark, 2.5%);
+$light-bg-subtle-dark: $cmt-surface-dark;
+$light-border-subtle-dark: $cmt-border-dark;
+
+$font-family-monospace: "JetBrains Mono", ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, Consolas, monospace;
+$font-size-base: 1.0625rem;
+$headings-font-weight: 700;
+$border-radius: 0.5rem;
+$border-radius-lg: 0.75rem;

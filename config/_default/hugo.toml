@@ -1,23 +1,25 @@
 title = "Carlos Muñoz Torrijos"
-baseurl = "http://localhost/"
+baseurl = "https://www.carlosmunoztorrijos.com/"
 canonifyURLs = false
-disableAliases = true
+disableAliases = false # necesario para redirigir las URLs antiguas
 disableHugoGeneratorInject = true
 # disableKinds = ["taxonomy", "term"]
 enableEmoji = true
 enableGitInfo = false
+timeZone = "Europe/Madrid"
 enableRobotsTXT = true
-languageCode = "es"
-paginate = 10
+languageCode = "es-ES"
 rssLimit = 10
-summarylength = 20 # 70 (default)
+summarylength = 40
 
-# Multilingual
-defaultContentLanguage = "en"
-disableLanguages = ["de", "nl"]
+# Idioma
+defaultContentLanguage = "es"
 defaultContentLanguageInSubdir = false
 
-copyRight = "Copyright (c) 2020-2024 Thulite"
+copyright = "Carlos Muñoz Torrijos"
+
+[pagination]
+  pagerSize = 10
 
 [build.buildStats]
   enable = true
@@ -52,13 +54,11 @@ copyRight = "Copyright (c) 2020-2024 Thulite"
     maxAge = -1 # "30m"
 
 [taxonomies]
-  contributor = "contributors"
-  category = "categories"
   tag = "tags"
 
 [permalinks]
   blog = "/blog/:slug/"
-  docs = "/docs/:sections[1:]/:slug/"
+  docs = "/docs/:slug/"
 # docs = "/docs/1.0/:sections[1:]/:slug/"
 
 [minify.tdewolff.html]
@@ -84,3 +84,9 @@ copyRight = "Copyright (c) 2020-2024 Thulite"
   hint = "photo"
   quality = 85
   resampleFilter = "Lanczos"
+
+# Publicar solo las imágenes procesadas (WebP), no los originales de cada post.
+# Los que se usan directamente (p. ej. cover.png para redes sociales) se publican igualmente.
+[[cascade]]
+  [cascade.build]
+    publishResources = false
