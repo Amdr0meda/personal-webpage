@@ -74,20 +74,16 @@ body {
 // ---------- Hero (portada) ----------
 .hero {
   display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 3rem;
-  padding: 4rem 0 3.5rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 2rem 4rem;
+  padding: 3.5rem 0 2.75rem;
   border-bottom: 1px solid var(--cmt-border);
 
   @media (max-width: 767.98px) {
     grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 2.5rem 0;
-    text-align: left;
-
-    .hero__avatar { order: -1; }
-    .hero__avatar img { width: 120px; height: 120px; }
+    gap: 1.5rem;
+    padding: 2.25rem 0 2rem;
   }
 }
 
@@ -135,19 +131,42 @@ body {
   font-size: 1.15rem;
   color: var(--cmt-muted);
   max-width: 38rem;
-  margin-bottom: 1.75rem;
+  margin-bottom: 0;
+}
+
+// Columna derecha: botones + redes
+.hero__side {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 15rem;
+
+  .hero__social {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 0 0.25rem;
+  }
+
+  @media (max-width: 767.98px) {
+    width: auto;
+
+    .hero__social {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 0.5rem 1.25rem;
+      padding: 0;
+    }
+  }
 }
 
 .hero__actions {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-direction: column;
   gap: 0.75rem;
 
-  .hero__social { margin-left: 0.75rem; }
-
-  @media (max-width: 575.98px) {
-    .hero__social { margin: 0.5rem 0 0; width: 100%; }
+  @media (max-width: 767.98px) {
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 }
 
@@ -176,14 +195,6 @@ body {
     margin: 0;
     flex-shrink: 0;
   }
-}
-
-.hero__avatar img {
-  width: 240px;
-  height: 240px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 0 0 6px var(--cmt-bg), 0 0 0 8px var(--cmt-accent), var(--cmt-shadow);
 }
 
 // ---------- Secciones de portada ----------

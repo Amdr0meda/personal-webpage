@@ -9,23 +9,18 @@
     <h1 id="hero-title" class="hero__title">{{ site.Title }}</h1>
     <p class="hero__role">{{ $h.role }}</p>
     {{ with .Params.lead }}<p class="hero__lead">{{ . }}</p>{{ end }}
+  </div>
+  <div class="hero__side">
     <div class="hero__actions">
       <a class="btn btn-primary btn-lg" href="{{ "blog/" | relURL }}">Leer el blog</a>
       <a class="btn btn-outline-primary btn-lg" href="{{ "sobre-mi/" | relURL }}">Sobre mí</a>
-      <ul class="hero__social">
+    </div>
+    <ul class="hero__social">
       {{- with $h.github }}<li><a href="{{ . }}" rel="me noopener" target="_blank" aria-label="GitHub">{{ partial "inline-svg" (dict "src" "outline/brand-github" "class" "svg-inline-custom" "role" "presentation" "aria-hidden" "true") }}<span>GitHub</span></a></li>{{ end }}
       {{- with $h.linkedin }}<li><a href="{{ . }}" rel="me noopener" target="_blank" aria-label="LinkedIn">{{ partial "inline-svg" (dict "src" "outline/brand-linkedin" "class" "svg-inline-custom" "role" "presentation" "aria-hidden" "true") }}<span>LinkedIn</span></a></li>{{ end }}
       {{- with $h.email }}<li><a href="mailto:{{ . }}" aria-label="Email">{{ partial "inline-svg" (dict "src" "outline/mail" "class" "svg-inline-custom" "role" "presentation" "aria-hidden" "true") }}<span>Email</span></a></li>{{ end }}
-      </ul>
-    </div>
+    </ul>
   </div>
-  {{- with resources.Get "images/carlos-avatar.jpg" }}
-    {{- $sm := .Resize "240x240 webp q80 photo" }}
-    {{- $lg := .Resize "480x480 webp q80 photo" }}
-    <div class="hero__avatar">
-      <img src="{{ $lg.RelPermalink }}" srcset="{{ $sm.RelPermalink }} 240w, {{ $lg.RelPermalink }} 480w" sizes="(max-width: 767px) 120px, 240px" width="240" height="240" alt="Foto de {{ site.Title }}" fetchpriority="high" decoding="async">
-    </div>
-  {{- end }}
 </section>
 
 <section class="home-section" aria-labelledby="latest-title">
