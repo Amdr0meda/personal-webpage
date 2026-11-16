@@ -1,0 +1,10 @@
+{{- /* Igual que en Doks, pero color-mode.js va incrustado (≈1 KB) en vez de como petición
+     bloqueante: el tema claro/oscuro se aplica antes de pintar sin esperar a la red. */ -}}
+{{- if eq site.Params.doks.colorMode "auto" }}
+  {{- with resources.Get "js/color-mode.js" | js.Build (dict "minify" true) }}
+<script>{{ .Content | safeJS }}</script>
+  {{- end }}
+{{- end }}
+{{- if and (site.Params.doks.alert) (site.Params.doks.alertDismissable) }}
+  {{- partial "footer/esbuild" (dict "src" "js/dismissable-alert.js" "transpile" false) }}
+{{- end }}
