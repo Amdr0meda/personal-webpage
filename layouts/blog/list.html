@@ -5,8 +5,8 @@
 </header>
 {{- $paginator := .Paginate .Pages.ByDate.Reverse }}
 <div class="post-grid post-grid--list">
-  {{- range $paginator.Pages }}
-    {{ partial "custom/post-card.html" . }}
+  {{- range $i, $p := $paginator.Pages }}
+    {{ partial "custom/post-card.html" (dict "page" $p "eager" (eq $i 0)) }}
   {{- end }}
 </div>
 {{ template "_internal/pagination.html" . }}

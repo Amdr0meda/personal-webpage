@@ -1,4 +1,8 @@
-{{- /* Tarjeta de post reutilizable. Contexto: página del blog. */ -}}
+{{- /* Tarjeta de post reutilizable. Contexto: la página del post, o (dict "page" . "eager" true)
+     para la primera tarjeta visible (imagen LCP: sin lazy y con prioridad alta). */ -}}
+{{- $p := . }}{{ $eager := false -}}
+{{- if reflect.IsMap . }}{{ $p = .page }}{{ $eager = .eager }}{{ end -}}
+{{- with $p -}}
 {{- $cover := .Resources.GetMatch "{*cover*,*feature*,*thumbnail*}" -}}
 {{- if not $cover }}{{ $cover = resources.Get "images/default-cover.png" }}{{ end -}}
 <article class="post-card">
@@ -6,7 +10,7 @@
     {{- $sm := .Fill "400x200 webp q78 Center drawing" }}
     {{- $lg := .Fill "800x400 webp q78 Center drawing" }}
     <div class="post-card__media">
-      <img src="{{ $sm.RelPermalink }}" srcset="{{ $sm.RelPermalink }} 400w, {{ $lg.RelPermalink }} 800w" sizes="(max-width: 575px) calc(100vw - 2rem), 400px" width="400" height="200" alt="" loading="lazy" decoding="async">
+      <img src="{{ $sm.RelPermalink }}" srcset="{{ $sm.RelPermalink }} 400w, {{ $lg.RelPermalink }} 800w" sizes="(max-width: 575px) calc(100vw - 2rem), 400px" width="400" height="200" alt="" {{ if $eager }}fetchpriority="high"{{ else }}loading="lazy"{{ end }} decoding="async">
     </div>
   {{- end }}
   <div class="post-card__body">
@@ -25,3 +29,4 @@
     {{- end }}
   </div>
 </article>
+{{- end -}}

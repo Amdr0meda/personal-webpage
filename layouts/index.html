@@ -29,8 +29,8 @@
     <a class="home-section__more" href="{{ "blog/" | relURL }}">Ver todas →</a>
   </div>
   <div class="post-grid">
-    {{- range first 3 $posts.ByDate.Reverse }}
-      {{ partial "custom/post-card.html" . }}
+    {{- range $i, $p := first 3 $posts.ByDate.Reverse }}
+      {{ partial "custom/post-card.html" (dict "page" $p "eager" (eq $i 0)) }}
     {{- end }}
   </div>
 </section>
