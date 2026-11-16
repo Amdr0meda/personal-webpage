@@ -15,8 +15,8 @@
   {{- $scripts := slice -}}
   {{- range slice $flex $modal -}}
     {{- $s := string . -}}
-    {{- $src := index (findRESubmatch `src="([^"]+)"` $s 1) 0 1 -}}
-    {{- $sri := index (findRESubmatch `integrity="([^"]+)"` $s 1) 0 1 -}}
+    {{- $src := index (findRESubmatch `src="([^"]+)"` $s 1) 0 1 | htmlUnescape -}}
+    {{- $sri := index (findRESubmatch `integrity="([^"]+)"` $s 1) 0 1 | htmlUnescape -}}
     {{- $scripts = $scripts | append (dict "src" $src "integrity" $sri) -}}
   {{- end }}
 <script>

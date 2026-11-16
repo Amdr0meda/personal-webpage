@@ -382,11 +382,19 @@ body {
 // ---------- Temas (tags) ----------
 .topic-list {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.5rem;
   list-style: none;
-  padding: 0;
+  padding: 0 2.5rem 0.25rem 0;
   margin: 0 0 1rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 3rem), transparent);
+  mask-image: linear-gradient(to right, #000 calc(100% - 3rem), transparent);
+
+  &::-webkit-scrollbar { display: none; }
+
+  li { flex: 0 0 auto; }
 
   a {
     display: inline-flex;
@@ -623,6 +631,22 @@ body {
   }
 
   h2:first-child { margin-top: 0; }
+
+  h3 {
+    font-size: 1.1rem;
+    margin: 1.75rem 0 0.15rem;
+    padding-left: 0.85rem;
+    border-left: 3px solid var(--cmt-accent);
+  }
+
+  h3 + p {
+    padding-left: calc(0.85rem + 3px);
+    font-size: 0.95rem;
+    color: var(--cmt-muted);
+    margin-bottom: 0.6rem;
+
+    strong { color: var(--cmt-ink); }
+  }
 
   li { margin-bottom: 0.5rem; }
 }
@@ -861,4 +885,107 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .nf__cursor { animation: none; }
+}
+
+// ---------- Homelab ----------
+.page-head .hero__prompt { margin-bottom: 0.5rem; }
+
+.tool-card__ext { color: var(--cmt-accent); font-weight: 400; }
+
+.tool-card__badge {
+  margin-left: 0.35rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  font-family: var(--cmt-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  vertical-align: 0.1em;
+  color: var(--cmt-accent);
+  background: var(--cmt-accent-soft);
+}
+
+.tool-grid--lab {
+  grid-template-columns: #{"repeat(auto-fill, minmax(min(100%, 22rem), 1fr))"};
+}
+
+// ---------- Cabecera: iconos con hover turquesa ----------
+.navbar .nav-link.active,
+.offcanvas .nav-link.active { color: var(--cmt-accent) !important; }
+
+.navbar,
+.offcanvas {
+  .btn-link { color: var(--cmt-ink); }
+
+  .btn-link,
+  #searchToggleDesktop,
+  #searchToggleMobile,
+  #buttonColorMode,
+  .nav-link,
+  .social-link {
+    transition: color 0.15s ease;
+
+    &:hover,
+    &:focus-visible { color: var(--cmt-accent) !important; }
+  }
+}
+
+// ---------- Menú móvil en tarjetas ----------
+@media (max-width: 991.98px) {
+  #offcanvasNavMain {
+    .navbar-nav {
+      gap: 0.6rem;
+      padding-top: 0.5rem;
+    }
+
+    .navbar-nav .nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.1rem;
+      border: 1px solid var(--cmt-border);
+      border-radius: $border-radius-lg;
+      background: var(--cmt-surface);
+      color: var(--cmt-ink);
+      font-weight: 500;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+      &::after {
+        content: "→";
+        font-family: var(--cmt-mono);
+        opacity: 0.5;
+      }
+
+      &:hover,
+      &:focus-visible,
+      &:active,
+      &.active {
+        background: var(--cmt-accent);
+        border-color: var(--cmt-accent);
+        color: var(--cmt-bg) !important;
+
+        &::after { opacity: 1; }
+      }
+    }
+  }
+}
+
+// ---------- Avisos (callout) en turquesa ----------
+html body .callout.callout-note,
+html[data-bs-theme] body .callout.callout-note {
+  border: 1px solid var(--cmt-border);
+  border-left: 4px solid var(--cmt-accent);
+  border-radius: $border-radius-lg;
+  background: var(--cmt-accent-soft);
+
+  .callout-icon,
+  .callout-title { color: var(--cmt-accent); }
+
+  .callout-icon.svg-inline { width: 1.4rem; height: 1.4rem; flex-shrink: 0; }
+
+  .callout-title { font-weight: 600; margin-bottom: 0.25rem; }
+
+  .callout-body,
+  .callout-body p { color: var(--cmt-ink); }
 }

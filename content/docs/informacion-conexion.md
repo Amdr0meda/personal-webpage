@@ -79,4 +79,6 @@ Así ve tu conexión el borde de Cloudflare más cercano a ti.
 })();
 </script>
 
-> **Nota:** los datos se obtienen en tu navegador desde el endpoint público `/cdn-cgi/trace` de Cloudflare. No se envían ni se guardan en ningún sitio.
+{{< callout context="note" title="Nota" icon="outline/info-circle" >}}
+Los datos se obtienen en tu navegador desde el endpoint público `/cdn-cgi/trace` de Cloudflare. No se envían ni se guardan en ningún sitio.
+{{< /callout >}}

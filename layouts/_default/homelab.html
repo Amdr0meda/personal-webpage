@@ -1,0 +1,25 @@
+{{ define "main" }}
+<header class="page-head">
+  <p class="hero__prompt"><span class="hero__prompt-user">carlos@homelab</span>:<span class="hero__prompt-path">~</span>$ ls /srv</p>
+  <h1>{{ .Title }}</h1>
+  <p class="page-head__lead">Paneles en directo de mi infraestructura local.</p>
+</header>
+<div class="tool-grid tool-grid--lab">
+  {{- range $i, $l := .Params.links }}
+  {{- $icon := partial "inline-svg" (dict "src" (printf "outline/%s" ($l.icon | default "server-2")) "id" (printf "svg-lab-%d" $i) "class" "svg-inline-custom" "role" "presentation") }}
+  {{- if $l.url }}
+  <a class="tool-card" href="{{ $l.url }}" target="_blank" rel="noopener">
+    <span class="tool-card__icon" aria-hidden="true">{{ $icon }}</span>
+    <span class="tool-card__title">{{ $l.title }} <span class="tool-card__ext" aria-hidden="true">↗</span></span>
+    <span class="tool-card__desc">{{ $l.desc }}</span>
+  </a>
+  {{- else }}
+  <div class="tool-card tool-card--soon" aria-disabled="true">
+    <span class="tool-card__icon" aria-hidden="true">{{ $icon }}</span>
+    <span class="tool-card__title">{{ $l.title }} <span class="tool-card__badge">Próximamente</span></span>
+    <span class="tool-card__desc">{{ $l.desc }}</span>
+  </div>
+  {{- end }}
+  {{- end }}
+</div>
+{{ end }}

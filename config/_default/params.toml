@@ -1,6 +1,6 @@
 # Hugo
 title = "Carlos Muñoz Torrijos"
-description = "Blog y documentación de Carlos Muñoz Torrijos, administrador de sistemas: Proxmox, Linux, redes, VPN, Cloudflare y homelab."
+description = "Blog y documentación de Carlos Muñoz Torrijos, Coordinador Técnico IT: sistemas, redes, ciberseguridad, Proxmox, WireGuard, Cloudflare y homelab."
 author = "Carlos Muñoz Torrijos"
 dateFormat = ":date_long"
 images = ["cover.png"]
@@ -13,7 +13,7 @@ mainSections = ["docs"]
 
 # Portada
 [home]
-  role = "Administrador de sistemas"
+  role = "Coordinador Técnico IT · Sistemas e Infraestructura · Ciberseguridad"
   location = "España"
   github = "https://github.com/amdr0meda"
   linkedin = "https://es.linkedin.com/in/carlosmunoztorrijos"
@@ -54,7 +54,7 @@ mainSections = ["docs"]
   bootstrapJavascript = false # false (default) or true
 
   # Nav
-  sectionNav = ["docs"] # ["docs"] (default) or list of sections (e.g. ["docs", "guides"])
+  sectionNav = [] # sin menú lateral de sección: hay pocas páginas en Docs
   toTopButton = true # false (default) or true
   breadcrumbTrail = false # false (default) or true
   headlineHash = true # true (default) or false

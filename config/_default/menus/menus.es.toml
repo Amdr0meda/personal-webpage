@@ -1,16 +1,21 @@
 [[main]]
+  name = "Homelab"
+  pageRef = "/homelab"
+  weight = 5
+
+[[main]]
   name = "Blog"
-  url = "/blog/"
+  pageRef = "/blog"
   weight = 10
 
 [[main]]
-  name = "Documentación"
-  url = "/docs/"
+  name = "Docs"
+  pageRef = "/docs"
   weight = 30
 
 [[main]]
-  name = "Sobre mí"
-  url = "/sobre-mi/"
+  name = "Whoami"
+  pageRef = "/sobre-mi"
   weight = 40
 
 [[social]]
