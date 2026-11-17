@@ -1,0 +1,5 @@
+{{- /* Devuelve true si el panel tiene una fuente de datos real configurada. Contexto: página del panel. */ -}}
+{{- $s := .Params.source | default dict -}}
+{{- $t := $s.type | default "none" -}}
+{{- $live := or (and (eq $t "atlas") (gt (int ($s.probe | default 0)) 0)) (and (in (slice "json" "link") $t) (ne ($s.url | default "") "")) -}}
+{{- return $live -}}

@@ -1,0 +1,19 @@
+{{ define "main" }}
+<header class="page-head">
+  <p class="hero__prompt"><span class="hero__prompt-user">carlos@homelab</span>:<span class="hero__prompt-path">~</span>$ ls /srv</p>
+  <h1>{{ .Title }}</h1>
+  <p class="page-head__lead">Paneles en directo de mi infraestructura local.</p>
+</header>
+<div class="tool-grid tool-grid--lab">
+  {{- range $i, $p := .Pages.ByWeight }}
+  {{- $live := partial "homelab/live.html" $p }}
+  <a class="tool-card" href="{{ $p.RelPermalink }}">
+    <span class="tool-card__icon" aria-hidden="true">{{ partial "inline-svg" (dict "src" (printf "outline/%s" ($p.Params.icon | default "server-2")) "id" (printf "svg-lab-%d" $i) "class" "svg-inline-custom" "role" "presentation") }}</span>
+    <span class="tool-card__title">{{ $p.Title }}
+      {{- if not $live }} <span class="tool-card__badge tool-card__badge--off">Offline</span>{{ end -}}
+    </span>
+    <span class="tool-card__desc">{{ $p.Params.summary }}</span>
+  </a>
+  {{- end }}
+</div>
+{{ end }}

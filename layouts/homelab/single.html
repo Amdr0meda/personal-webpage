@@ -1,0 +1,42 @@
+{{ define "main" }}
+{{- $s := .Params.source | default dict -}}
+{{- $type := $s.type | default "none" -}}
+{{- $live := partial "homelab/live.html" . -}}
+<article class="lab">
+  <a class="lab__back" href="{{ .Parent.RelPermalink }}">← Homelab</a>
+  <header class="page-head">
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.summary }}<p class="page-head__lead">{{ . }}</p>{{ end }}
+  </header>
+
+  <section class="panel" aria-live="polite"
+    data-type="{{ cond $live $type "none" }}"
+    data-url="{{ $s.url | default "" }}"
+    data-probe="{{ $s.probe | default 0 }}"
+    data-refresh="{{ .Params.refresh | default 300 }}">
+    <div class="panel__bar">
+      <span class="panel__state is-offline">{{ if $live }}Cargando…{{ else }}Offline{{ end }}</span>
+      <span class="panel__updated">{{ if not $live }}Sin datos ahora mismo{{ end }}</span>
+    </div>
+    <div class="panel__metrics">
+      {{- range .Params.labels }}
+      <div class="panel__metric">
+        <span class="panel__metric-label">{{ . }}</span>
+        <span class="panel__metric-value">—</span>
+      </div>
+      {{- end }}
+    </div>
+    {{- if and (eq $type "link") $live }}
+    <p class="panel__link"><a class="btn btn-primary" href="{{ $s.url }}" target="_blank" rel="noopener">Abrir panel completo ↗</a></p>
+    {{- end }}
+  </section>
+
+  {{ with .Content }}<div class="lab__body">{{ . }}</div>{{ end }}
+</article>
+
+{{- if and $live (in (slice "atlas" "json") $type) }}
+{{- with resources.Get "js/homelab.js" | js.Build (dict "minify" true) | fingerprint }}
+<script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+{{- end }}
+{{- end }}
+{{ end }}
