@@ -1,0 +1,9 @@
+{{ define "main" }}
+{{- /* Página de Docs a ancho completo (sin barra lateral ni índice), p. ej. Pruebas de red. */ -}}
+<main class="directory">
+  <header class="page-head">
+    <h1>{{ .Title }}</h1>
+  </header>
+  <div class="directory__body">{{ .Content }}</div>
+</main>
+{{ end }}

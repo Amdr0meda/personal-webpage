@@ -1,0 +1,14 @@
+{{- /* Directorio de enlaces. Lee "groups" del front matter de la página y los muestra en una sola lista. */ -}}
+<ul class="link-list link-list--flat">
+  {{- range .Page.Params.groups }}
+  {{- range .links }}
+  <li>
+    <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">
+      <span class="link-list__name">{{ .name }} <span class="link-list__ext" aria-hidden="true">↗&#xFE0E;</span></span>
+      <span class="link-list__desc">{{ .desc }}</span>
+      <span class="link-list__host">{{ (urls.Parse .url).Host | strings.TrimPrefix "www." }}</span>
+    </a>
+  </li>
+  {{- end }}
+  {{- end }}
+</ul>
