@@ -1188,6 +1188,7 @@ html[data-bs-theme] body .callout.callout-note {
 
 // ---------- Pie: separador ----------
 .footer__sep { margin: 0 0.5rem; }
+.footer__links, .footer__links li, .footer__links a { font-size: inherit !important; }
 
 // ---------- Homelab: barra de disponibilidad ----------
 .panel__history { margin-top: 1.5rem; }
