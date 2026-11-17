@@ -1,0 +1,15 @@
+{{- /* Línea de tiempo. Uso: {{< timeline "experiencia" >}} lee esa lista del front matter. */ -}}
+{{- with index .Page.Params (.Get 0) }}
+<ol class="timeline">
+  {{- range . }}
+  <li class="timeline__item{{ if .current }} is-current{{ end }}">
+    <span class="timeline__when">{{ .when }}</span>
+    <h3 class="timeline__title">{{ .title }}</h3>
+    {{ with .org }}<p class="timeline__org">{{ . }}</p>{{ end }}
+    {{- with .points }}
+    <ul>{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}</ul>
+    {{- end }}
+  </li>
+  {{- end }}
+</ol>
+{{- end }}

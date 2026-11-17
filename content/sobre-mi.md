@@ -4,7 +4,7 @@ headline: "Hola, soy Carlos"
 description: "Coordinador Técnico IT: sistemas e infraestructura, redes y ciberseguridad. Windows Server, Linux, Proxmox, WireGuard y Cloudflare."
 summary: "Coordinador Técnico IT · Sistemas e Infraestructura. Me gusta que la red funcione, esté documentada y nadie tenga que acordarse de ella."
 date: 2024-09-28
-lastmod: 2026-11-16
+lastmod: 2026-11-17
 draft: false
 layout: "about"
 skills:
@@ -18,6 +18,34 @@ skills:
     items: ["TPV / ICG", "ERP", "Trazabilidad de producción"]
   - group: "Certificaciones"
     items: ["EC-Council DFE", "Fortinet NSE 2 y 3", "Cisco CCNA: Scaling & Connecting Networks", "Cisco Cybersecurity Essentials", "Cursos CCN-CERT"]
+experiencia:
+  - when: "mar 2026 – actualidad"
+    title: "Coordinador Técnico IT"
+    org: "Malvón Factory"
+    current: true
+    points:
+      - "Responsable único de IT en la planta, reportando a dirección."
+      - "Diseño e implantación de la **trazabilidad por unidad** en el encajado y rediseño de las etiquetas de producto."
+      - "Resolución de una caída del núcleo **multi-WAN** en 15–20 minutos, localizando y retirando un dispositivo no autorizado que provocaba conflictos ARP."
+      - "Reorganización del rack y del cableado, y **documentación completa** de la red de la planta."
+      - "Gestión de CCTV/NVR, sistema de alarmas con CRA y control de fichajes; coordinación con proveedores y guardias."
+  - when: "jun 2022 – mar 2026"
+    title: "Técnico Superior · Administrador de Sistemas"
+    org: "Grupo Malvón · prácticas desde marzo de 2022"
+    points:
+      - "Soporte a **unas 100 sedes** en España y Portugal y a más de **100 terminales de punto de venta**."
+      - "Más de **20 aperturas de tienda** in situ y un checklist de aperturas que sigue en uso."
+      - "Despliegue de la **VPN corporativa con WireGuard** y gestión del DNS en **Cloudflare**."
+      - "Copias de seguridad de SQL Server y tareas automatizadas con el Programador de tareas."
+      - "Formación de los alumnos en prácticas del departamento."
+formacion:
+  - when: "2022 – 2023"
+    title: "Máster en Ciberseguridad"
+    org: "Digitech"
+  - when: "2021 – 2022"
+    title: "CFGS Administración de Sistemas Informáticos en Red (ASIR)"
+  - when: "2020 – 2021"
+    title: "CFGM Sistemas Microinformáticos y Redes (SMR)"
 seo:
   title: "Sobre mí - Carlos Muñoz Torrijos"
   description: "Carlos Muñoz Torrijos, Coordinador Técnico IT: sistemas e infraestructura, redes y ciberseguridad. Experiencia, formación y homelab."
@@ -31,31 +59,11 @@ Hoy soy el responsable técnico de IT en una planta de producción: llevo la inf
 
 ## Experiencia
 
-### Coordinador Técnico IT
-
-**Malvón Factory** · marzo 2026 – actualidad
-
-- Responsable único de IT en la planta, reportando a dirección.
-- Diseño e implantación de la **trazabilidad por unidad** en el encajado y rediseño de las etiquetas de producto.
-- Resolución de una caída del núcleo **multi-WAN** en 15–20 minutos, localizando y retirando un dispositivo no autorizado que provocaba conflictos ARP.
-- Reorganización del rack y del cableado, y **documentación completa** de la red de la planta.
-- Gestión de CCTV/NVR, sistema de alarmas con CRA y control de fichajes; coordinación con proveedores y guardias.
-
-### Técnico Superior · Administrador de Sistemas
-
-**Grupo Malvón** · junio 2022 – marzo 2026 (prácticas desde marzo 2022)
-
-- Soporte a **unas 100 sedes** en España y Portugal y a más de **100 terminales de punto de venta**.
-- Más de **20 aperturas de tienda** in situ y un checklist de aperturas que sigue en uso.
-- Despliegue de la **VPN corporativa con WireGuard** y gestión del DNS en **Cloudflare**.
-- Copias de seguridad de SQL Server y tareas automatizadas con el Programador de tareas.
-- Formación de los alumnos en prácticas del departamento.
+{{< timeline "experiencia" >}}
 
 ## Formación
 
-- **Máster en Ciberseguridad** · Digitech (2022–2023)
-- **CFGS Administración de Sistemas Informáticos en Red (ASIR)** · 2021–2022
-- **CFGM Sistemas Microinformáticos y Redes (SMR)** · 2020–2021
+{{< timeline "formacion" >}}
 
 ## Cómo trabajo
 

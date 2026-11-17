@@ -5,7 +5,8 @@
 //       {
 //         "updated": "2026-11-17T10:00:00Z",                       // opcional
 //         "metrics": [{ "label": "Ratio", "value": "1,92", "hint": "opcional" }],
-//         "items":   [{ "name": "Proxmox", "status": "up|warn|down|info", "detail": "texto" }]
+//         "items":   [{ "name": "Proxmox", "status": "up|warn|down|info", "detail": "texto" }],
+//         "history": ["up", "up", "warn", null, "down", ...]           // opcional: un valor por día, del más antiguo a hoy (máx. 30)
 //       }
 // Se refresca cada data-refresh segundos (mínimo 60).
 'use strict';
@@ -40,10 +41,30 @@
     panel.querySelectorAll('.panel__metric-hint').forEach((h) => h.remove());
     const list = $('.panel__items');
     if (list) list.hidden = true;
+    history([]);
     $('.panel__updated').textContent = 'Sin datos ahora mismo';
   }
 
+  // Barra de disponibilidad: sin datos se queda gris.
+  function history(days) {
+    const cells = panel.querySelectorAll('.panel__history-bar li');
+    const recent = (days || []).slice(-cells.length);
+    const offset = cells.length - recent.length;
+    cells.forEach((c, i) => {
+      const v = i >= offset ? recent[i - offset] : null;
+      c.className = ['up', 'warn', 'down'].includes(v) ? 'is-' + v : '';
+    });
+    const known = recent.filter((v) => ['up', 'warn', 'down'].includes(v));
+    const note = $('.panel__history-note');
+    if (note) {
+      note.textContent = known.length
+        ? fmtNum.format(Math.round((known.filter((v) => v !== 'down').length / known.length) * 1000) / 10) + ' % disponible'
+        : 'Sin datos';
+    }
+  }
+
   function render(data) {
+    history(data.history);
     const metrics = $('.panel__metrics');
     metrics.replaceChildren(...(data.metrics || []).map((m) => {
       const box = el('div', 'panel__metric');

@@ -26,6 +26,16 @@
       </div>
       {{- end }}
     </div>
+    <div class="panel__history">
+      <div class="panel__history-head">
+        <span>Disponibilidad · últimos 30 días</span>
+        <span class="panel__history-note">Sin datos</span>
+      </div>
+      <ol class="panel__history-bar" aria-hidden="true">
+        {{- range seq 30 }}<li></li>{{ end -}}
+      </ol>
+      <div class="panel__history-axis"><span>hace 30 días</span><span>hoy</span></div>
+    </div>
     {{- if and (eq $type "link") $live }}
     <p class="panel__link"><a class="btn btn-primary" href="{{ $s.url }}" target="_blank" rel="noopener">Abrir panel completo ↗&#xFE0E;</a></p>
     {{- end }}

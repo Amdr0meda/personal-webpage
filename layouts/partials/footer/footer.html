@@ -1,10 +1,13 @@
 <footer class="footer">
   <div class="container-{{ site.Params.doks.containerBreakpoint | default "lg" }}">
     <div class="footer__inner">
-      <p class="footer__copy">© {{ now.Year }} {{ site.Params.author }}</p>
+      <p class="footer__copy">© {{ now.Year }} {{ site.Params.author }}<span class="footer__sep" aria-hidden="true">·</span><span>Actualizado el <time datetime="{{ site.Lastmod.Format "2006-01-02" }}">{{ site.Lastmod | time.Format ":date_long" }}</time></span></p>
       <ul class="footer__links">
         {{- range site.Menus.footer }}
         <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+        {{- end }}
+        {{- with site.Params.doks.docsRepo }}
+        <li><a href="{{ . }}" target="_blank" rel="noopener">Código de la web</a></li>
         {{- end }}
       </ul>
     </div>
